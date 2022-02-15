@@ -4,30 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | A Minimal Book Example</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <title>References | Økologsik tilstand i Nordre Follo</title>
+  <meta name="description" content="<p>Dette dokumentet beskriver arbidet med fremstilling av et regnskap for økologsik tilstand i Nordre Follo kommune, anno 2022.
+…</p>" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | A Minimal Book Example" />
+  <meta property="og:title" content="References | Økologsik tilstand i Nordre Follo" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="<p>Dette dokumentet beskriver arbidet med fremstilling av et regnskap for økologsik tilstand i Nordre Follo kommune, anno 2022.
+…</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | A Minimal Book Example" />
+  <meta name="twitter:title" content="References | Økologsik tilstand i Nordre Follo" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="<p>Dette dokumentet beskriver arbidet med fremstilling av et regnskap for økologsik tilstand i Nordre Follo kommune, anno 2022.
+…</p>" />
   
 
-<meta name="author" content="John Doe" />
+<meta name="author" content="Anders L. Kolstad m.f." />
 
 
 <meta name="date" content="2022-02-15" />
@@ -37,8 +34,9 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sharing-your-book.html"/>
+<link rel="prev" href="diskusjon-og-fremtidsutsikter.html"/>
 
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -56,24 +54,23 @@ set in the _output.yml file.</p>" />
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -93,7 +90,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -126,6 +123,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -143,35 +162,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Tilstandsregnskap - Nordre Follo 2022</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Bakgrunn</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduksjon-til-tilstandsregnskap-etter-seea-ea-standarden"><i class="fa fa-check"></i><b>1.1</b> Introduksjon til tilstandsregnskap etter SEEA EA standarden</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#relevant-nasjonalt-utviklingsarbeid"><i class="fa fa-check"></i><b>1.2</b> Relevant nasjonalt utviklingsarbeid</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a><ul>
-<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a><ul>
-<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+<li class="chapter" data-level="2" data-path="arbeidsflyt.html"><a href="arbeidsflyt.html"><i class="fa fa-check"></i><b>2</b> Arbeidsflyt</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="arbeidsflyt.html"><a href="arbeidsflyt.html#eksempler"><i class="fa fa-check"></i><b>2.1</b> Eksempler</a>
+<ul>
+<li class="chapter" data-level="" data-path="arbeidsflyt.html"><a href="arbeidsflyt.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a><ul>
-<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="3" data-path="indikatordekning.html"><a href="indikatordekning.html"><i class="fa fa-check"></i><b>3</b> Indikatordekning</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="indikatordekning.html"><a href="indikatordekning.html#diskusjon-rundt-indikatordekningen-og-fremtidige-utsikter"><i class="fa fa-check"></i><b>3.1</b> Diskusjon rundt indikatordekningen og fremtidige utsikter</a></li>
+<li class="chapter" data-level="3.2" data-path="indikatordekning.html"><a href="indikatordekning.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
-<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a><ul>
-<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
-<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+<li class="chapter" data-level="4" data-path="indikatorer.html"><a href="indikatorer.html"><i class="fa fa-check"></i><b>4</b> Indikatorer</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="indikatorer.html"><a href="indikatorer.html#skog"><i class="fa fa-check"></i><b>4.1</b> Skog</a>
+<ul>
+<li class="chapter" data-level="" data-path="indikatorer.html"><a href="indikatorer.html#rovdyr"><i class="fa fa-check"></i>Rovdyr</a></li>
+<li class="chapter" data-level="" data-path="indikatorer.html"><a href="indikatorer.html#naturtyper"><i class="fa fa-check"></i>Tilstand i naturtyper</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a><ul>
-<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
-<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="4.2" data-path="indikatorer.html"><a href="indikatorer.html#våtmark"><i class="fa fa-check"></i><b>4.2</b> Våtmark</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a><ul>
-<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
-<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
-<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="5" data-path="tilstandsvariabler.html"><a href="tilstandsvariabler.html"><i class="fa fa-check"></i><b>5</b> Tilstandsvariabler</a>
+<ul>
+<li class="chapter" data-level="" data-path="tilstandsvariabler.html"><a href="tilstandsvariabler.html#skogvariabler"><i class="fa fa-check"></i>Skog</a></li>
+<li class="chapter" data-level="" data-path="tilstandsvariabler.html"><a href="tilstandsvariabler.html#våtmarksvariabler"><i class="fa fa-check"></i>Våtmark</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="hovedresultater.html"><a href="hovedresultater.html"><i class="fa fa-check"></i><b>6</b> Hovedresultater</a></li>
+<li class="chapter" data-level="7" data-path="diskusjon-og-fremtidsutsikter.html"><a href="diskusjon-og-fremtidsutsikter.html"><i class="fa fa-check"></i><b>7</b> Diskusjon og fremtidsutsikter</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -185,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Økologsik tilstand i Nordre Follo</a>
           </h1>
         </div>
 
@@ -196,12 +219,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 
-<div id="refs" class="references">
-<div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Framstad, Erik, Håkan Berglund, Rannveig M Jacobsen, Simon Jakobsson, Mikael Ohlson, Anne Sverdrup-Thygeson, and Joachim Töpper. 2000. <span>“Vurdering Av Økologisk Tilstand for Skog i Norge i 2020.”</span>
 </div>
-<div>
-<p>———. 2021. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+<div class="csl-entry">
+Framstad, Erik, Nina E. Eide, Wenche Eide, Kari Klanderud, Anders Kolstad, Joachim Töpper, and Vigdis Vandvik. 2022. <span>“Vurdering Av Økologisk Tilstand for Fjell i Norge i 2021.”</span> <em>NINA Rapport</em>. Vol. 2025.
+</div>
+<div class="csl-entry">
+Jakobsson, Simon, Marianne Evju, Erik Framstad, Alexis Imbert, Anders Lyngstad, Hanne Sickel, Anne Sverdrup-Thygeson, et al. 2021. <span>“Introducing the Index-Based Ecological Condition Assessment Framework (IBECA).”</span> <em>Ecological Indicators</em> 124 (May): 107252. <a href="https://doi.org/10.1016/j.ecolind.2020.107252">https://doi.org/10.1016/j.ecolind.2020.107252</a>.
+</div>
+<div class="csl-entry">
+Nybø, Signe, Per Arneberg, Erik Framstad, Rolf Ims, Anders Lyngstad, Ann Kristin Schartau, Hanne Sickel, Anne Sverdrup-Thygeson, and Vigdis Vandvik. 2017. <em>Fagsystem for Fastsetting Av God Økologisk Tilstand - Forslag Fra Et Ekspertråd</em>. Ekspertrådet for Økologisk Tilstand. <a href="https://www.regjeringen.no/no/">https://www.regjeringen.no/no/</a>.
+</div>
+<div class="csl-entry">
+Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
+</div>
+<div class="csl-entry">
+———. 2021. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
 </div>
 </div>
 </div>
@@ -216,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="sharing-your-book.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diskusjon-og-fremtidsutsikter.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -248,7 +283,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-referanser.Rmd",
 "text": "Edit"
 },
 "history": {

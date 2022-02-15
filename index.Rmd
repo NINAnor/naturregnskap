@@ -1,6 +1,6 @@
 --- 
 title: "Økologsik tilstand i Nordre Follo"
-author: "Anders L. KOlstad m.f."
+author: "Anders L. Kolstad m.f."
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -26,9 +26,22 @@ This is a _sample_ book written in **Markdown**. You can use anything that Pando
 **Kommer snart....**
 
 
-## Relevante nasjonalt utviklingsarbeid
+## Relevant nasjonalt utviklingsarbeid
 
-Det er utgitt nasjonale økologiske tilstandsvurderinger basert på samme grunnleggende metode som det som brukes i Nordre Follo (indeksmetoden) [@10.1016/j.ecolind.2020.107252] 
+Det er utgitt nasjonale økologiske tilstandsvurderinger for skog [@Framstad2000] og fjell [@Framstad2022] basert på samme grunnleggende metode som det som brukes i Nordre Follo (indeksmetoden) [@Jakobsson2021]. Disse følger på fra arbeidet med fagsystemet for økologisk tilstand [@Nybø2017].
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.

@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book Example"
-author: "John Doe"
+title: "Økologsik tilstand i Nordre Follo"
+author: "Anders L. Kolstad m.f."
 date: "2022-02-15"
 site: bookdown::bookdown_site
 documentclass: book
@@ -8,18 +8,41 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
+  Dette dokumentet beskriver arbidet med fremstilling av et regnskap for økologsik tilstand i Nordre Follo kommune, anno 2022.
+  ...
+  
 link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
-# About
+# Bakgrunn
+
+Kommer snart...
 
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
 
-## Usage 
+## Introduksjon til tilstandsregnskap etter SEEA EA standarden
+
+**Kommer snart....**
+
+
+## Relevant nasjonalt utviklingsarbeid
+
+Det er utgitt nasjonale økologiske tilstandsvurderinger for skog [@Framstad2000] og fjell [@Framstad2022] basert på samme grunnleggende metode som det som brukes i Nordre Follo (indeksmetoden) [@Jakobsson2021]. Disse følger på fra arbeidet med fagsystemet for økologisk tilstand [@Nybø2017].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
 
@@ -27,7 +50,6 @@ Use second-level and higher headings within chapters like: `## A short section` 
 
 The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
 
-## Render book
 
 You can render the HTML version of this example book without changing anything:
 
@@ -44,7 +66,7 @@ bookdown::render_book()
 
 To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
 
-## Preview book
+
 
 As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
 
