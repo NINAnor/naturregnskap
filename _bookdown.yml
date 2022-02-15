@@ -1,4 +1,8 @@
+output_dir: "docs"
+
 delete_merged_file: true
 language:
   ui:
     chapter_name: "Chapter "
+new_session: yes
+book_filename: _main

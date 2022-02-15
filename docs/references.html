@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Cross-references | A Minimal Book Example</title>
+  <title>References | A Minimal Book Example</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Cross-references | A Minimal Book Example" />
+  <meta property="og:title" content="References | A Minimal Book Example" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Cross-references | A Minimal Book Example" />
+  <meta name="twitter:title" content="References | A Minimal Book Example" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -37,8 +37,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="hello-bookdown.html"/>
-<link rel="next" href="parts.html"/>
+<link rel="prev" href="sharing-your-book.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Tilstandsregnskap - Nordre Follo 2022</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a><ul>
@@ -193,102 +193,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cross" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Cross-references</h1>
-<p>Cross-references make it easier for your readers to find and link to elements in your book.</p>
-<div id="chapters-and-sub-chapters" class="section level2">
-<h2><span class="header-section-number">3.1</span> Chapters and sub-chapters</h2>
-<p>There are two steps to cross-reference any heading:</p>
-<ol style="list-style-type: decimal">
-<li>Label the heading: <code># Hello world {#nice-label}</code>.
-<ul>
-<li>Leave the label off if you like the automated heading generated based on your heading title: for example, <code># Hello world</code> = <code># Hello world {#hello-world}</code>.</li>
-<li>To label an un-numbered heading, use: <code># Hello world {-#nice-label}</code> or <code>{# Hello world .unnumbered}</code>.</li>
-</ul></li>
-<li>Next, reference the labeled heading anywhere in the text using <code>\@ref(nice-label)</code>; for example, please see Chapter <a href="cross.html#cross">3</a>.
-<ul>
-<li>If you prefer text as the link instead of a numbered reference use: <a href="cross.html#cross">any text you want can go here</a>.</li>
-</ul></li>
-</ol>
-</div>
-<div id="captioned-figures-and-tables" class="section level2">
-<h2><span class="header-section-number">3.2</span> Captioned figures and tables</h2>
-<p>Figures and tables <em>with captions</em> can also be cross-referenced from elsewhere in your book using <code>\@ref(fig:chunk-label)</code> and <code>\@ref(tab:chunk-label)</code>, respectively.</p>
-<p>See Figure <a href="cross.html#fig:nice-fig">3.1</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="cross.html#cb3-1"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</span>
-<span id="cb3-2"><a href="cross.html#cb3-2"></a><span class="kw">plot</span>(pressure, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nice-fig"></span>
-<img src="_main_files/figure-html/nice-fig-1.png" alt="Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases." width="80%" />
-<p class="caption">
-Figure 3.1: Here is a nice figure!
-</p>
-</div>
-<p>Don’t miss Table <a href="cross.html#tab:nice-tab">3.1</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="cross.html#cb4-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
-<span id="cb4-2"><a href="cross.html#cb4-2"></a>  <span class="kw">head</span>(pressure, <span class="dv">10</span>), <span class="dt">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
-<span id="cb4-3"><a href="cross.html#cb4-3"></a>  <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
-<span id="cb4-4"><a href="cross.html#cb4-4"></a>)</span></code></pre></div>
-<table>
-<caption><span id="tab:nice-tab">Table 3.1: </span>Here is a nice table!</caption>
-<thead>
-<tr class="header">
-<th align="right">temperature</th>
-<th align="right">pressure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0.0002</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="right">0.0012</td>
-</tr>
-<tr class="odd">
-<td align="right">40</td>
-<td align="right">0.0060</td>
-</tr>
-<tr class="even">
-<td align="right">60</td>
-<td align="right">0.0300</td>
-</tr>
-<tr class="odd">
-<td align="right">80</td>
-<td align="right">0.0900</td>
-</tr>
-<tr class="even">
-<td align="right">100</td>
-<td align="right">0.2700</td>
-</tr>
-<tr class="odd">
-<td align="right">120</td>
-<td align="right">0.7500</td>
-</tr>
-<tr class="even">
-<td align="right">140</td>
-<td align="right">1.8500</td>
-</tr>
-<tr class="odd">
-<td align="right">160</td>
-<td align="right">4.2000</td>
-</tr>
-<tr class="even">
-<td align="right">180</td>
-<td align="right">8.8000</td>
-</tr>
-</tbody>
-</table>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
 
+<div id="refs" class="references">
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2021. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
 </div>
 </div>
+</div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="hello-bookdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sharing-your-book.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -319,7 +248,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
 "text": "Edit"
 },
 "history": {
