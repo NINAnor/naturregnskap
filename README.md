@@ -1,10 +1,7 @@
-Welcome! 
+På denne nettressursen samles informasjon, dokumentajon og resulatter rundt arbeidet med et økologisk tilstandsregnskap for Nordre Follo kommune, anno 2022.
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
+[Klikk her](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/) for å gå til en lesevennlig fremstilling.
 
-This template provides a skeleton file structure that you can edit to create your book. 
-
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
 
 Additional resources:
 

@@ -1,10 +1,21 @@
-# Footnotes and citations 
+# Tilstandsvariabler
 
-## Footnotes
+
+
+## Skog {-#skogvariabler}
+
+...
+
+## Våtmark {-#våtmarksvariabler}
+
+...
+
+
+
 
 Footnotes are put inside the square brackets after a caret `^[]`. Like this one ^[This is a footnote.]. 
 
-## Citations
+Citations
 
 Reference items in your bibliography file(s) using `@key`.
 

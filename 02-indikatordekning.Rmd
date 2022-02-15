@@ -1,8 +1,14 @@
-# Cross-references {#cross}
+# Indikatordekning
 
-Cross-references make it easier for your readers to find and link to elements in your book.
+Her kommer det bl.a. en tabell som viser hvordan indikatorene fra de ulike økosystemene fordeler seg mellom de seks ECT-klassene.
 
-## Chapters and sub-chapters
+
+## Diskusjon rundt indikatordekningen og fremtidige utsikter
+
+...
+
+
+
 
 There are two steps to cross-reference any heading:
 

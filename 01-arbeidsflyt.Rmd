@@ -1,8 +1,10 @@
-# Hello bookdown 
+# Arbeidsflyt
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+Her beskrives den generelle, eller mest typisek, arbeidsflyten.
 
-## A section
+## Eksempler
+
+Her følger noen eksempler på bruk av den generelle arbeidsflyten
 
 All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
 
