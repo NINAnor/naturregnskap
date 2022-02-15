@@ -7,6 +7,26 @@ Her kommer det bl.a. en tabell som viser hvordan indikatorene fra de ulike økos
 
 Diskusjon rundt indikatordekningen og fremtidige utsikter.
 
+```{r, include=F}
+library(readxl)
+library(DT)
+```
 
 
 
+```{r, echo=F, message=F, warning=F}
+minInd <- read_excel("data/Minimum indikatorsett.xlsx", 
+    sheet = "table")
+```
+
+
+
+
+```{r indikatordekning, echo=F, fig.cap="Oversikt over indikatordekning i Nordre Follo. Kollonnene A1 tl C1 refererer til økosystemegenskaper som alle bør dekkes av minst 2 indikatorer (gir grønn farge), eller i det minste en indikator (som gir gul farge)"}
+datatable(minInd) %>% 
+  formatStyle(
+    names(minInd)[2:length(minInd)],
+    backgroundColor = styleInterval(c(0.5, 1.5), c('red', 'yellow', 'green')),
+  )
+  
+```

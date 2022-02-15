@@ -1,0 +1,177 @@
+# Eksempler
+
+
+```{r setup, include=F, warning=F, message=F}
+library(raster)
+library(tmap)
+library(sp)
+library(sf)
+```
+
+## Tolv boligområder
+
+Hvilken oppløsning kan vi forvente fra økologisk tilstand?
+Kan økologisk tilstand brukes som kunnskapsgrunnlag i arealbrukssaker? 
+Her ser vi på ett konkret eksempel med 12 aktueller prosjektområder/boligområder i Nordre Follo kommune.
+
+[//]: # (importer boligområdene. Shapefil levert av David Barton)
+```{r, include=F}
+dat <- sf::st_read(dsn = "data/tolvBoligomraader/UtbyggingsOmråde_polygon.shp")
+```
+
+[//]: # (Importerer omrisset til Nordre Follo)
+```{r, echo=F}
+nf <- readRDS("data/outlineNF.rds")
+```
+
+[//]: # (Skru på interaktivt kartmodus)
+```{r, include=F}
+tmap_mode("plot") # View funker ikke av en eller annen grunn
+```
+
+```{r, fig.width=5, fig.height=7, message=F, echo=F}
+tm_basemap(c("OpenStreetMap", "Esri.WorldGrayCanvas", "Esri.WorldTopoMap"))+
+tm_shape(nf)+#, bbox = bbox_new)+
+  tm_polygons(col = "grey",
+              alpha=0.5)+
+tm_shape(dat)+
+ tm_polygons(col = "NAVN", 
+            alpha = .8,
+            palette = "viridis",
+            legend.show = F)
+
+```
+
+Områdene er spredt rundt i hele kommunen. 
+
+```{r, include=F}
+dat$areal <- st_area(dat)
+# konverter til km2
+dat$areal <- dat$areal/(10^6)
+summary(dat$areal)
+```
+
+Arealet til prosjektområdene er fra 0.01 til 0.2 km2.
+
+
+
+
+## Indikatorer og variabler
+Her følger noen eksempler på ulike variabler og indikatorer og hvordan de kan inngå i [arbeidsflyten](arbeidsflyt.html).
+
+
+### Pollinatorrikhet {-}
+
+Dette datasettet tetthet av solitaerebier representerer en arealdekkende modellering av artstetthet av solitære bier på en 20 x 20 meters oppløsning [@Sydenham2022; @Sydenham2022b].
+
+[//]: # (Skru på interaktivt kartmodus)
+
+```{r, include=F}
+nf <- readRDS("data/outlineNF.rds")
+dat <- raster("data/pollinatorrikhet_clipped.tif", band=3)
+
+```
+
+
+
+
+```{r bier, echo=F, warning=F, message=F, fig.cap="Modellert artsrikhet av solitære bier (se tekst for referanse)."}
+tmap_mode("plot") # View funker ikke av ene eller annen grunn
+#tm_basemap(c("OpenStreetMap", "Esri.WorldGrayCanvas", "Esri.WorldTopoMap"))+
+  tm_shape(nf)+  # legger på denne først kun for å sette extent
+  tm_borders(
+    )+
+  tm_shape(dat)+
+  tm_raster(
+    title = "Artstetthet for solitære bier",
+    alpha = 1,
+    palette = "viridis",
+    legend.show = T)+
+    tm_shape(nf)+
+  tm_borders(
+    col = "white",
+    lwd=3
+    )+
+  tm_layout(legend.outside = T)
+
+```
+
+Solitære bier er viktige pollinatorer.
+Slik sett kan dette være en fin tilstandsvariabel siden det relevant for pollinering, en sentral naturgode.
+Det er ikke ennå klart hvordan denne variabelen kan skaleres til å bli en indikator (jf. Figur \@ref(fig:workflow) ) ,
+men det er heller ikke umulig at dette kan utvikles på sikt.
+Kartet er heldekkende, men denne variabelen er trolig mest relevant for åpent lavland, spesielt semi-naturlig mark, siden det er her man kan forvente å finne solitære bier.
+
+
+## Noen utfordringer ved vegg-til-vegg regnskap
+
+I Nordre Follo skal det gjøres et vegg-til-vegg regnskap, i motsettning til i de nasjonale vurderingene hvor man har gjort ett og ett økosystem om gangen. Det vil si at man i Nordre Follo må ha indikatorer for alle de økosystemene eller arealtypene som finnes der. Som vi ser under så er det ganske mange. 
+
+
+```{r, cache=T, include=F}
+elc <- raster("data/ELC10_2018_nordreFollo_10m.tif")
+```
+
+```{r, include=F}
+colElc <- c("#000000",
+            "#CC0303",
+            "#CDB400",
+            "#235123",
+            "#B76124",
+            "#92AF1F",
+            "#F7E174",
+            "#2019A4",
+            "#AEC3D6")
+
+cats <- c(
+  "not mapped",
+  "Artificial land",
+  "Cropland",
+  "Woodland",
+  "Shrubland",
+  "Grassland",
+  "Bare land",
+  "Water/permanent snow/ice",
+  "Wetland"                 
+)
+
+catsNorsk <- c(
+  "Ikke kartlagt",
+  "Sterkt endret mark",
+  "Dyrket mark",
+  "Skog",
+  "Hei",
+  "Eng",
+  "Åpen fastmark",
+  "Vann eller permanent is",
+  "Våtmark"                 
+)
+
+catsDF <- data.frame(
+  num = seq(0,8,1),
+  cat = cats,
+  catNorsk = catsNorsk
+)
+```
+
+
+```{r, echo=F, fig.width=5, fig.height=7, message=F, fig.cap="Figur X: Kart over Arealtyper i Nordre Follo kommune."}
+tm_shape(elc)+
+ tm_raster(
+   style = "fixed", 
+   breaks = seq(-0.5,8.5,1),
+   labels = catsNorsk,
+   palette = colElc,
+   alpha=1,
+   title = "Arealbruk (ELC10) i\nNordre Follo"
+   )+
+  tm_shape(nf)+
+  tm_polygons(col = "grey",
+              alpha=0.5)+
+tm_layout(title.position = c('right', 'top'),
+          legend.position = c("left","bottom"),
+          legend.bg.color = "white",
+          legend.bg.alpha = .8)
+```
+
+Spesielt vannskelig blir det å finne indikatorer for våtmark, sterkt endret mark (inkl. bebygd areal) og semi-naturlig mark.  Realistisk sett vil det ikke bli mulig å få samme indikatordekning på alle arealer, som vi hadde i de nasjonale vurderingene. Samtidig vil oppløsning på den holistiske tilstandsvurderingen, basert på indikatorer som ligner de vi har brukt i de nasjonel tilstandsvurderingen, ikke gi grunnlag for sikkert å skille lokale områder. 

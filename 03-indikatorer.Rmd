@@ -1,23 +1,120 @@
 # Indikatorer
 
+```{r, include=FALSE}
+library(tmap)
+library(knitr)
+library(sf)
+```
+
+Tilstandsindikatorer er re-skaerte variabler (jf. Figur \@ref(fig:workflow)).
+De bør oppfylle så mange av de følgende punktene som mulig (liste hentet fra [@Nybø2017]):
+
+1. gi et representativt bilde av miljøets tilstand, miljøpåvirkninger eller samfunnets respons
+1. være enkel, lett å tolke og i stand til å vise trender over tid
+1. respondere på endringer i miljøet og relaterte menneskelige aktiviteter
+1. gi grunnlag for internasjonale sammenligninger
+1. være relevant for det arealet som vurderes
+1. ha en terskelverdi eller referanseverdi som den kan sammenlignes mot, slik at brukere kan vurdere betydningen av indikatorens verdi 
+1. være teoretisk godt fundert i tekniske og vitenskapelige termer
+1. være basert på internasjonale standarder og internasjonal konsensus om gyldighet
+1. være egnet til å kobles mot økonomiske modeller, prognoser og informasjonssystemer
+1. være lett tilgjengelig eller kunne gjøres tilgjengelig på en kostnadseffektiv måte
+1. være godt dokumentert og av kjent kvalitet
+1. oppdateres jevnlig i samsvar med utarbeidede prosedyrer
+
+
+Se også [@Czúcz2021] for flere kriterier til indikatorer.
+
+
+
+I tillegg sier FN-standarden for tilstandsregnskap [@UN2021] at hver ECT-klasse dekkes med minst en indikator per økosystem, og det bør være ca. 6-10 indikatore totalt per økosystem.
+
+
+```{r hovedfigurfjell, echo=F, out.width = "100%", fig.cap="Hovedfiguren fra rapporten om økologisk tilstand i norske fjelløkosystemer."}
+knitr::include_graphics("output/region_Norge_.png")
+```
+
+Figur \@ref(fig:hovedfigurfjell) er hovedfiguren fra rapporten om økologisk tilstand i fjell i Norge, hvor det er brukt hele 19 indikatorer.
+Merk at de fleste (om ikke alle) av disse indikatorene ikke vil vise noe fornuftig variasjon innad i en kommune. 
+Det kommer blant annet av at det er landskapsøkologiske prosesser som styrer de, eksempelvis tetthetenen av hjortevilt og rovdyr.
+Klimaderiverte indikatorer, slik som snødybde, vil trolig variere lite. 
+For andre indikatorer finnes det informasjon på en fin skala (eksempelvis NDVI som kommer som 250m x 250m raster), men at usikkerheten er større enn variasjonen mellom naboceller, slik at man bør unngå å overtolke den finskala variasjonen.
+
+
+```{r ECT, echo=F, out.width = "100%"}
+knitr::include_graphics("figures/ECT.png")
+```
+
+Tabellen over er hentet fra [@Czúcz2021]
+
+
 Her kommer korte beskrivelser for hver tilstandsindikator, fordelt på økosystemtype, med lenke til mer utfyllende dokumentasjon
 
 ## Skog
 Økosystem skog er dekket med **XX** antall indikatorer fordelt på **YY** antall ECT-klasser.
 
+
+
+
+
 ### Rovdyr {-#rovdyr}
 
-ECT B1: Compositional state
+ECT-klasse | Referansestadie | Status
+---------- | ------------- | --------------
+B1 (Compositional state) |  For-historisk (*Undisturbed or minimally-disturbed condition*) | **Foreløpig inkludert**
+
+
+```{r, echo=F, out.width="100%"}
+ulv_nf <- readRDS("output/scaledIndicatorMaps/shp/ulv.rds")
+tm_shape(ulv_nf)+
+  tm_polygons(col = "val",
+              title = "Ulv (skalert mot referanseverdi)",
+              alpha=1,
+              legend.hist = F,
+              palette = "RdYlGn")+
+  tm_layout(legend.outside = TRUE)
+```
+
+Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt **uniform indikator**.
 
 [Klikk her](rovdyr.html) for mer informasjon.
 
+
+
 ### Tilstand i naturtyper {-#naturtyper}
 
-ECT ???
+ECT-klasse | Referansestadie | Status
+---------- | ------------- | --------------
+B1 (Compositional state) |  For-historisk (*Undisturbed or minimally-disturbed condition*) | **Foreløpig ekskludert**
+
+```{r, include=F, message=F}
+naturtyper <- st_read("output/scaledIndicatorMaps/shp/naturtyperMdir.shp")
+nf <- readRDS("data/outlineNF.rds")
+```
+
+```{r, out.width="100%", echo=F}
+tm_shape(nf)+
+  tm_polygons(col = "grey",
+              alpha=0.2)+
+tm_shape(naturtyper)+
+ tm_polygons(col = "val",
+             title = "Tilstand i utvalgte naturtyper",
+             legend.hist = TRUE,
+             legend.hist.title = "Histogram over tilstandsverdier",
+            alpha = 1,
+            palette = "RdYlGn",
+            legend.show = T)+
+   tm_layout(legend.outside = TRUE) 
+```
+
+Dette er et typisk **frimerkekart**.
+Å inkludere denne indikatoren vil derfor ikke få stor invirkning på de romlig aggregerte tilstandsverdien (jf. Figur \@ref(fig:workflow)).
+En annen utfordring med denne indikatoren er at tilstandsvariabelen egentlig er en kombinasjon av faktiske tilstandsvariabler og registrert menneskelige påvirkninger.
+
 
 [Klikk her](naturtyper.html) for mer informasjon.
 
-## Våtmark
+## Ferskvann
 
 kommer snart...
 
