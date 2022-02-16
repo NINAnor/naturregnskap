@@ -155,7 +155,7 @@ catsDF <- data.frame(
 ```
 
 
-```{r, echo=F, fig.width=5, fig.height=7, message=F, fig.cap="Figur X: Kart over Arealtyper i Nordre Follo kommune."}
+```{r, echo=F, fig.width=5, fig.height=7, message=F, fig.cap="Kart over Arealtyper i Nordre Follo kommune."}
 tm_shape(elc)+
  tm_raster(
    style = "fixed", 

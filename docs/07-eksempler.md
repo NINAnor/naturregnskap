@@ -67,8 +67,8 @@ I Nordre Follo skal det gjøres et vegg-til-vegg regnskap, i motsettning til i d
 
 
 <div class="figure">
-<img src="07-eksempler_files/figure-html/unnamed-chunk-9-1.png" alt="Figur X: Kart over Arealtyper i Nordre Follo kommune." width="480" />
-<p class="caption">(\#fig:unnamed-chunk-9)Figur X: Kart over Arealtyper i Nordre Follo kommune.</p>
+<img src="07-eksempler_files/figure-html/unnamed-chunk-9-1.png" alt="Kart over Arealtyper i Nordre Follo kommune." width="480" />
+<p class="caption">(\#fig:unnamed-chunk-9)Kart over Arealtyper i Nordre Follo kommune.</p>
 </div>
 
 Spesielt vannskelig blir det å finne indikatorer for våtmark, sterkt endret mark (inkl. bebygd areal) og semi-naturlig mark.  Realistisk sett vil det ikke bli mulig å få samme indikatordekning på alle arealer, som vi hadde i de nasjonale vurderingene. Samtidig vil oppløsning på den holistiske tilstandsvurderingen, basert på indikatorer som ligner de vi har brukt i de nasjonel tilstandsvurderingen, ikke gi grunnlag for sikkert å skille lokale områder. 
