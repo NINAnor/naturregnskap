@@ -2,8 +2,10 @@ fig:workflow
 fig:workflow2
 fig:indikatordekning
 fig:hovedfigurfjell
+fig:ulvNI
 fig:bier
 fig:unnamed-chunk-9
+eq:ncrep
 bakgrunn
 hva-er-økologisk-tilstand
 introduksjon-til-tilstandsregnskap-etter-seea-ea-standarden
@@ -22,6 +24,5 @@ eksempler
 tolv-boligområder
 indikatorer-og-variabler
 noen-utfordringer-ved-vegg-til-vegg-regnskap
-eq:ncrep
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
 tilnærminger-til-aggregering
+registrer-økologisk-tilstand-i-felt

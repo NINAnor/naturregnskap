@@ -58,12 +58,18 @@ ECT-klasse | Referansestadie | Status
 ---------- | ------------- | --------------
 B1 (Compositional state) |  For-historisk (*Undisturbed or minimally-disturbed condition*) | **Foreløpig inkludert**
 
+Denne indikatoren skal baseres på total metabolsk biomasse av større rovdyr, men foreløpig er kun ulv tatt med i utregningene.
 
 <img src="03-indikatorer_files/figure-html/unnamed-chunk-2-1.png" width="100%" />
 
 Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt **uniform indikator**.
+Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
+<div class="figure">
+<img src="figures/ulv_ni.png" alt="Kart som viser oppløsningen av den skalerte ulveindikatoren fra NAturindeks." width="80%" />
+<p class="caption">(\#fig:ulvNI)Kart som viser oppløsningen av den skalerte ulveindikatoren fra NAturindeks.</p>
+</div>
 
-[Klikk her](rovdyr.html) for mer informasjon.
+[Klikk her](rovdyr.html) for mer informasjon om utregegningen av rovdyrindikatoren.
 
 
 
@@ -71,7 +77,7 @@ Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såk
 
 ECT-klasse | Referansestadie | Status
 ---------- | ------------- | --------------
-B1 (Compositional state) |  For-historisk (*Undisturbed or minimally-disturbed condition*) | **Foreløpig ekskludert**
+Flere |  Variert | **Foreløpig ekskludert**
 
 
 

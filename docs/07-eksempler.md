@@ -3,11 +3,15 @@
 
 
 
+På denne siden vises det frem en del eksempler og diskusjonspunkter.
+
+
 ## Tolv boligområder
 
 Hvilken oppløsning kan vi forvente fra økologisk tilstand?
 Kan økologisk tilstand brukes som kunnskapsgrunnlag i arealbrukssaker? 
-Her ser vi på ett konkret eksempel med 12 aktueller prosjektområder/boligområder i Nordre Follo kommune.
+Kartet under viser 12 realle prosjektområder/boligområder i Nordre Follo kommune.
+Kan økologisk tilstand brukes til å informere om hvordan disse områdene bør disponeres?
 
 [//]: # (importer boligområdene. Shapefil levert av David Barton)
 
@@ -20,11 +24,21 @@ Her ser vi på ett konkret eksempel med 12 aktueller prosjektområder/boligområ
 
 <img src="07-eksempler_files/figure-html/unnamed-chunk-4-1.png" width="480" />
 
-Områdene er spredt rundt i hele kommunen. 
 
 
 
-Arealet til prosjektområdene er fra 0.01 til 0.2 km2.
+Områdene er spredt rundt i hele kommunen og har et areal fra 0.01 til 0.2 km2.
+
+De aller fleste indikatorene for økologisk tilstand vil ikke ha en oppløsning (se [*rovdyrindikatoren*](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/indikatorer.html#rovdyr)) eller dekkningsgrad (se [*Tilstand i naturtyper*-indikatoren](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/indikatorer.html#naturtyper)) som gjør det mulig å skille disse områdene.
+Derfor vil ikke en tematisk aggrering av økologisk tilstand kunne gi denne type infomarjon heller.
+Derimot vil det i arbeidet med et naturregnskap kunne utarbeides og presenteres flere interessente kartlag som kan informere arealforvaltningen, slik som variabelen [*Artstetthet av solitære bier*](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/eksempler.html#pollinatorrikhet), samt flere kart fra naturgoderegnskapapet.
+Disse kartene kan ikke sies å represnetere økologisk tilstand som sådann, men kan allikevel inngå i kunnskapsgrunnlaget på lik linje som artsdata og forkomster av naturtyper som presenteres i [portalen for økologisk grunnkart](https://okologiskegrunnkart.artsdatabanken.no/?favorites=false).
+
+I tillegg utreder NINA mulighetene for å gjennomføre [feltbasert kartlegging](#registrer-økologisk-tilstand-i-felt) av naturtyper og tilstand etter en protokoll utviklet i Storbrittania.
+Denne kartleggingen kan kunne inngå som en del av et tilstandsregnskap og vil potensielt kunne gi arealforvaltningen kunnskap om økologisk tilstand i utvalgte prosjektomrder.
+
+
+
 
 
 
@@ -98,4 +112,13 @@ hvor delta z er samplet usikkerhet for n antall indikatorer.
 
 Dette gir oss en samlet indeksverdi på 625.7 pluss minus 287.
 
+## Registrer økologisk tilstand i felt
+
+Dersom en skal beregne økologsik tilstand etter fagsystemet vil dette av flere grunner ha [begrenset oppløsning](#tolv-boligområder), og derfor noe begreset bruksverdi i konkrete arealbruksvurderinger innad i kommunene. 
+Det som kan være en løsning for å dekke dette behovet er lokal datainnsamling av tilpassede tilstandsindikatorer knyttet til naturtyper eller arealtyper. Det beste eksempelt på dette som vi vet om er [the biodiversity metric](http://nepubprod.appspot.com/publication/6049804846366720). 
+
+## The Biodiversity Metric {-}
+Dette er en feltprotokoll og regneverktøy utviklet av eller med Natural England og skal brukes for å overvåke i hvilken grad nye byggeprosjekter i England oppfyller kravene i Biodiversity Net Gain strategien. Det gjøres en arealdekkende naturtypekrtlegging (i motsettnign til Naturtyper etter Miljødirektoratets instruks, som er det som benyttes i norske konsekvensutredninger blant annet) av interesseområdet og så bestemmes den økolgiske tilstanded ved hjelp av en kriterieliste. Kriterielisten er en liste med ja-nei spørsmål, noe som gjør feltinnsamlingen mye raskere enn om det skulle taes kvantitative mål. Listen av kriterier for god økologisk tilstand er unik for hver naturtype og kan være circa 7 punkter lang. Under kan du se kriteriene for noen kystnære, terrestriske økosystemer.
+
+![](figures/tilstandskriterier_biodiversityMetric_coastalHabitatType.png)
 

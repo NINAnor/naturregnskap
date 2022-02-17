@@ -27,7 +27,7 @@
 <meta name="author" content="Anders L. Kolstad m.f." />
 
 
-<meta name="date" content="2022-02-16" />
+<meta name="date" content="2022-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,6 +145,9 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="eksempler.html"><a href="eksempler.html#pollinatorrikhet"><i class="fa fa-check"></i>Pollinatorrikhet</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="eksempler.html"><a href="eksempler.html#noen-utfordringer-ved-vegg-til-vegg-regnskap"><i class="fa fa-check"></i><b>8.3</b> Noen utfordringer ved vegg-til-vegg regnskap</a></li>
+<li class="chapter" data-level="8.4" data-path="eksempler.html"><a href="eksempler.html#tilnærminger-til-aggregering"><i class="fa fa-check"></i><b>8.4</b> Tilnærminger til aggregering</a></li>
+<li class="chapter" data-level="8.5" data-path="eksempler.html"><a href="eksempler.html#registrer-økologisk-tilstand-i-felt"><i class="fa fa-check"></i><b>8.5</b> Registrer økologisk tilstand i felt</a></li>
+<li class="chapter" data-level="" data-path="eksempler.html"><a href="eksempler.html#the-biodiversity-metric"><i class="fa fa-check"></i>The Biodiversity Metric</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -227,18 +230,21 @@ For andre indikatorer finnes det informasjon på en fin skala (eksempelvis NDVI 
 </tr>
 </tbody>
 </table>
+<p>Denne indikatoren skal baseres på total metabolsk biomasse av større rovdyr, men foreløpig er kun ulv tatt med i utregningene.</p>
 <p><img src="03-indikatorer_files/figure-html/unnamed-chunk-2-1.png" width="100%" /></p>
-<p>Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt <strong>uniform indikator</strong>.</p>
-<p><a href="rovdyr.html">Klikk her</a> for mer informasjon.</p>
+Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt <strong>uniform indikator</strong>.
+Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
+<div class="figure"><span style="display:block;" id="fig:ulvNI"></span>
+<img src="figures/ulv_ni.PNG" alt="Kart som viser oppløsningen av den skalerte ulveindikatoren fra NAturindeks." width="80%" />
+<p class="caption">
+Figure 4.2: Kart som viser oppløsningen av den skalerte ulveindikatoren fra NAturindeks.
+</p>
+</div>
+<p><a href="rovdyr.html">Klikk her</a> for mer informasjon om utregegningen av rovdyrindikatoren.</p>
 </div>
 <div id="naturtyper" class="section level3 unnumbered">
 <h3>Tilstand i naturtyper</h3>
 <table>
-<colgroup>
-<col width="27%" />
-<col width="35%" />
-<col width="37%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>ECT-klasse</th>
@@ -248,8 +254,8 @@ For andre indikatorer finnes det informasjon på en fin skala (eksempelvis NDVI 
 </thead>
 <tbody>
 <tr class="odd">
-<td>B1 (Compositional state)</td>
-<td>For-historisk (<em>Undisturbed or minimally-disturbed condition</em>)</td>
+<td>Flere</td>
+<td>Variert</td>
 <td><strong>Foreløpig ekskludert</strong></td>
 </tr>
 </tbody>
@@ -339,6 +345,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
