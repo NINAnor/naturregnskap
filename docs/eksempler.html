@@ -106,7 +106,7 @@ div.csl-indent {
 <li><a href="./">Tilstandsregnskap - Nordre Follo 2022</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Bakgrunn</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span></a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hva-er-økologisk-tilstand"><i class="fa fa-check"></i><b>1.1</b> Hva er økologisk tilstand</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduksjon-til-tilstandsregnskap-etter-seea-ea-standarden"><i class="fa fa-check"></i><b>1.2</b> Introduksjon til tilstandsregnskap etter SEEA EA standarden</a></li>
@@ -145,6 +145,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="eksempler.html"><a href="eksempler.html#pollinatorrikhet"><i class="fa fa-check"></i>Pollinatorrikhet</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="eksempler.html"><a href="eksempler.html#noen-utfordringer-ved-vegg-til-vegg-regnskap"><i class="fa fa-check"></i><b>8.3</b> Noen utfordringer ved vegg-til-vegg regnskap</a></li>
+<li class="chapter" data-level="8.4" data-path="eksempler.html"><a href="eksempler.html#tilnærminger-til-aggregering"><i class="fa fa-check"></i><b>8.4</b> Tilnærminger til aggregering</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -192,7 +193,7 @@ Figure 8.1: Modellert artsrikhet av solitære bier (se tekst for referanse).
 </div>
 <p>Solitære bier er viktige pollinatorer.
 Slik sett kan dette være en fin tilstandsvariabel siden det relevant for pollinering, en sentral naturgode.
-Det er ikke ennå klart hvordan denne variabelen kan skaleres til å bli en indikator (jf. Figur <a href="arbeidsflyt.html#fig:workflow">2.1</a> ) ,
+Det er ikke ennå klart hvordan denne variabelen kan skaleres til å bli en indikator (jf. Figur <a href="#fig:workflow"><strong>??</strong></a> ) ,
 men det er heller ikke umulig at dette kan utvikles på sikt.
 Kartet er heldekkende, men denne variabelen er trolig mest relevant for åpent lavland, spesielt semi-naturlig mark, siden det er her man kan forvente å finne solitære bier.</p>
 </div>
@@ -207,6 +208,23 @@ Figure 8.2: Kart over Arealtyper i Nordre Follo kommune.
 </p>
 </div>
 <p>Spesielt vannskelig blir det å finne indikatorer for våtmark, sterkt endret mark (inkl. bebygd areal) og semi-naturlig mark. Realistisk sett vil det ikke bli mulig å få samme indikatordekning på alle arealer, som vi hadde i de nasjonale vurderingene. Samtidig vil oppløsning på den holistiske tilstandsvurderingen, basert på indikatorer som ligner de vi har brukt i de nasjonel tilstandsvurderingen, ikke gi grunnlag for sikkert å skille lokale områder.</p>
+</div>
+<div id="tilnærminger-til-aggregering" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Tilnærminger til aggregering</h2>
+<p>Metoden legger opp til å aggreggere verdier gjennom flere indikatator-rastere.
+I denne aggregeringen er det viktig å få med seg usikkerhetene i hver indikator og ikke bare ta gjennomsnittet av gjennomsnittene.
+Her er et gernalisert eksempel som viser hvordan dette kan gjøres.</p>
+<p><img src="07-eksempler_files/figure-html/means-1.png" width="960" /></p>
+<p>Hver av indikatorene har sin egen usikkerhet represnetert i tilsvarene rasterlag.
+Vi regner ut total usikkerhet slik:</p>
+<p>Equation <a href="eksempler.html#eq:ncrep">(8.1)</a></p>
+<p><span class="math display" id="eq:ncrep">\[\begin{equation}
+    \delta z = \frac{\sqrt{ \delta x^2 + \delta y^2 }}{n}
+    \tag{8.1}
+\end{equation}\]</span></p>
+<p>hvor delta z er samplet usikkerhet for n antall indikatorer.</p>
+<p><img src="07-eksempler_files/figure-html/errors-1.png" width="960" /></p>
+<p>Dette gir oss en samlet indeksverdi på 625.7 pluss minus 287.</p>
 
 </div>
 </div>
@@ -279,6 +297,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

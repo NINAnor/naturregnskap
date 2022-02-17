@@ -72,3 +72,30 @@ I Nordre Follo skal det gjøres et vegg-til-vegg regnskap, i motsettning til i d
 </div>
 
 Spesielt vannskelig blir det å finne indikatorer for våtmark, sterkt endret mark (inkl. bebygd areal) og semi-naturlig mark.  Realistisk sett vil det ikke bli mulig å få samme indikatordekning på alle arealer, som vi hadde i de nasjonale vurderingene. Samtidig vil oppløsning på den holistiske tilstandsvurderingen, basert på indikatorer som ligner de vi har brukt i de nasjonel tilstandsvurderingen, ikke gi grunnlag for sikkert å skille lokale områder. 
+
+## Tilnærminger til aggregering
+Metoden legger opp til å aggreggere verdier gjennom flere indikatator-rastere. 
+I denne aggregeringen er det viktig å få med seg usikkerhetene i hver indikator og ikke bare ta gjennomsnittet av gjennomsnittene.
+Her er et gernalisert eksempel som viser hvordan dette kan gjøres. 
+
+
+
+<img src="07-eksempler_files/figure-html/means-1.png" width="960" />
+
+Hver av indikatorene har sin egen usikkerhet represnetert i tilsvarene rasterlag. 
+Vi regner ut total usikkerhet slik: 
+
+Equation \@ref(eq:ncrep)
+
+\begin{equation}
+    \delta z = \frac{\sqrt{ \delta x^2 + \delta y^2 }}{n}
+    (\#eq:ncrep)
+\end{equation}
+
+hvor delta z er samplet usikkerhet for n antall indikatorer.
+
+<img src="07-eksempler_files/figure-html/errors-1.png" width="960" />
+
+Dette gir oss en samlet indeksverdi på 625.7 pluss minus 287.
+
+

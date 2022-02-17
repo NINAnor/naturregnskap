@@ -4,7 +4,7 @@
 ```{r setup, include=F, warning=F, message=F}
 library(raster)
 library(tmap)
-library(sp)
+#library(sp)
 library(sf)
 ```
 
@@ -16,7 +16,8 @@ Her ser vi på ett konkret eksempel med 12 aktueller prosjektområder/boligområ
 
 [//]: # (importer boligområdene. Shapefil levert av David Barton)
 ```{r, include=F}
-dat <- sf::st_read(dsn = "data/tolvBoligomraader/UtbyggingsOmråde_polygon.shp")
+
+dat <- sf::st_read(dsn = "data/tolvBoligomraader/UtbyggingsOmrade_polygon.shp")
 ```
 
 [//]: # (Importerer omrisset til Nordre Follo)
@@ -175,3 +176,64 @@ tm_layout(title.position = c('right', 'top'),
 ```
 
 Spesielt vannskelig blir det å finne indikatorer for våtmark, sterkt endret mark (inkl. bebygd areal) og semi-naturlig mark.  Realistisk sett vil det ikke bli mulig å få samme indikatordekning på alle arealer, som vi hadde i de nasjonale vurderingene. Samtidig vil oppløsning på den holistiske tilstandsvurderingen, basert på indikatorer som ligner de vi har brukt i de nasjonel tilstandsvurderingen, ikke gi grunnlag for sikkert å skille lokale områder. 
+
+## Tilnærminger til aggregering
+Metoden legger opp til å aggreggere verdier gjennom flere indikatator-rastere. 
+I denne aggregeringen er det viktig å få med seg usikkerhetene i hver indikator og ikke bare ta gjennomsnittet av gjennomsnittene.
+Her er et gernalisert eksempel som viser hvordan dette kan gjøres. 
+
+```{r, include=F}
+#Indicator A
+indA <- raster::raster(ncol=10, nrow=10)
+raster::values(indA) <- 1:ncell(indA)*5
+indAerr <- indA
+
+#Indicator B
+indB <- raster::raster(ncol=10, nrow=10)
+indB <- raster::setValues(indB,  rnorm(ncell(indB), 1000, 10))
+# errors
+indBerr <- indB-500 
+
+#stack indicators
+inds <- raster::stack(indA,indB)
+#stack errors in the same order
+err <- raster::stack(indAerr, indBerr)
+
+# Calculate mean per cell across indicator A and B
+r_mean <- raster::calc(inds, mean)
+
+```
+
+```{r means, echo=F, fig.width=10, fig.height=3 }
+par(mfrow=c(1,3), mar=c(4,2,4,8))
+plot(r_mean, main="Gjennomsnitt av A og B", asp=3, ylim=c(-100,100))
+plot(indA,   main="Indikator A",            asp=3, ylim=c(-100,100))
+plot(indB,   main="Indikator B",            asp=3, ylim=c(-100,100))
+
+```
+
+Hver av indikatorene har sin egen usikkerhet represnetert i tilsvarene rasterlag. 
+Vi regner ut total usikkerhet slik: 
+
+Equation \@ref(eq:ncrep)
+
+\begin{equation}
+    \delta z = \frac{\sqrt{ \delta x^2 + \delta y^2 }}{n}
+    (\#eq:ncrep)
+\end{equation}
+
+hvor delta z er samplet usikkerhet for n antall indikatorer.
+
+```{r errors, fig.width=10, fig.height=3, echo=F}
+# Calculate total error
+errors <- calc(err, function(x) sqrt(x[[1]]^2 + x[[2]]^2)/2)
+
+par(mfrow=c(1,3), mar=c(4,2,4,8))
+plot(errors,  main="Samlet usikkerhet",        asp =3, ylim=c(-100,100))
+plot(indAerr, main="Usikkerhet - Indikator A", asp =3, ylim=c(-100,100))
+plot(indBerr, main="Usikkerhet - Indikator B", asp =3, ylim=c(-100,100))
+```
+
+Dette gir oss en samlet indeksverdi på `r round(mean(values(r_mean)), 1)` pluss minus `r round(mean(values(errors)), 1)`.
+
+

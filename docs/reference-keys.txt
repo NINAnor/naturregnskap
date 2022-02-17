@@ -22,3 +22,6 @@ eksempler
 tolv-boligområder
 indikatorer-og-variabler
 noen-utfordringer-ved-vegg-til-vegg-regnskap
+eq:ncrep
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+tilnærminger-til-aggregering
