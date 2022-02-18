@@ -1,33 +1,45 @@
 --- 
-title: "Økologisk tilstand i Nordre Follo"
-author: "Anders L. Kolstad m.f."
+title: |
+    | Naturregnskap 
+    | - hva er det og hva kan det brukes til
+author: 
+  - Anders L. Kolstad^[anders.kolstad@nina.no]
+  - Trond Simensen
+  - David Barton
+  - Chloé R. Nater
+
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
 description: |
   Dette dokumentet beskriver arbidet med fremstilling av et regnskap for økologsik tilstand i Nordre Follo kommune, anno 2022.
   ...
   
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: NINAnor/naturregnskap
 ---
 
 # Bakgrunn
 
-Kommer snart...
+Denne boken tjener to formål.
+Det første er å beskrive og dokumentere metodene som NINA bruker i utabeidelselsen av naturregskap for kommuner (se også [NINA-infoside om naturregnskap](https://www.nina.no/B%C3%A6rekraftig-samfunn/Naturregnskap).
+Det andre formålet er å presentere et slikt regnskap for Nordre Follo kommune, som er pilotkommunen i dette prosjektet.
 
 Litt om EcoGaps...
+
 Natur for Livet...
+
 Fagsystemet...
+
 SEEA EA...
 
 
 ## Hva er økologisk tilstand
 
-Kommer snart...
+**Mer tekst kommer snart...**
+
+
 En kort definisjon....
 
 Økologisk tilstand er en holistisk vurdering av økosystemenes integritet. I praksis betyr ofte det i hvor stor grad økosystemene er påvirket av mennesker. Tilstanden vurderes ved hjelp av et indikatorsett. 
