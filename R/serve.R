@@ -20,7 +20,7 @@ serve_book(dir = hdir, output_dir = "docs/", preview = TRUE,
 
 # A live preview is now viewable at http://127.0.0.1:4321
 # Depending on your settings it may also apprear in the viewer inside RStudio IDE,
-# or you can force it like this: 
+# or you can force it like this:  
 
 viewer <- getOption("viewer")
 viewer("http://127.0.0.1:4321")
