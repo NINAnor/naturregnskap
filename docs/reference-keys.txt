@@ -26,3 +26,4 @@ indikatorer-og-variabler
 noen-utfordringer-ved-vegg-til-vegg-regnskap
 tilnærminger-til-aggregering
 registrer-økologisk-tilstand-i-felt
+url-your-book-url-like-httpsbookdown.orgyihuibookdown

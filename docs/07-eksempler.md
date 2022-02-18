@@ -31,7 +31,7 @@ Områdene er spredt rundt i hele kommunen og har et areal fra 0.01 til 0.2 km2.
 
 De aller fleste indikatorene for økologisk tilstand vil ikke ha en oppløsning (se [*rovdyrindikatoren*](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/indikatorer.html#rovdyr)) eller dekkningsgrad (se [*Tilstand i naturtyper*-indikatoren](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/indikatorer.html#naturtyper)) som gjør det mulig å skille disse områdene.
 Derfor vil ikke en tematisk aggrering av økologisk tilstand kunne gi denne type infomarjon heller.
-Derimot vil det i arbeidet med et naturregnskap kunne utarbeides og presenteres flere interessente kartlag som kan informere arealforvaltningen, slik som variabelen [*Artstetthet av solitære bier*](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/eksempler.html#pollinatorrikhet), samt flere kart fra naturgoderegnskapapet.
+Derimot vil det i arbeidet med et naturregnskap kunne utarbeides og presenteres flere interessente kartlag som kan informere arealforvaltningen, slik som variabelen [*Artstetthet av solitære bier*](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/eksempler.html#pollinatorrikhet), samt flere kart fra naturgoderegnskapet.
 Disse kartene kan ikke sies å represnetere økologisk tilstand som sådann, men kan allikevel inngå i kunnskapsgrunnlaget på lik linje som artsdata og forkomster av naturtyper som presenteres i [portalen for økologisk grunnkart](https://okologiskegrunnkart.artsdatabanken.no/?favorites=false).
 
 I tillegg utreder NINA mulighetene for å gjennomføre [feltbasert kartlegging](#registrer-økologisk-tilstand-i-felt) av naturtyper og tilstand etter en protokoll utviklet i Storbrittania.

@@ -1,7 +1,7 @@
 --- 
 title: "Økologisk tilstand i Nordre Follo"
 author: "Anders L. Kolstad m.f."
-date: "2022-02-17"
+date: "2022-02-18"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -18,7 +18,7 @@ github-repo: rstudio/bookdown-demo
 # Bakgrunn
 
 Kommer snart...
-
+ Blablabla 
 Litt om EcoGaps...
 Natur for Livet...
 Fagsystemet...

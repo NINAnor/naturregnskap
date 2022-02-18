@@ -1,5 +1,6 @@
 # Arbeidsflyt
 
+
 ```{r, include=FALSE}
 library(tmap)
 library(raster)

@@ -65,8 +65,11 @@ B1 (Compositional state) |  For-historisk (*Undisturbed or minimally-disturbed c
 
 Denne indikatoren skal baseres på total metabolsk biomasse av større rovdyr, men foreløpig er kun ulv tatt med i utregningene.
 
-```{r, echo=F, out.width="100%"}
+```{r, echo=F, out.width="100%", cache=T, cache.extra = file.mtime('output/scaledIndicatorMaps/shp/ulv.rds')}
 ulv_nf <- readRDS("output/scaledIndicatorMaps/shp/ulv.rds")
+```
+
+```{r, echo=F, warning=F, message=F}
 tm_shape(ulv_nf)+
   tm_polygons(col = "val",
               title = "Ulv (skalert mot referanseverdi)",
@@ -75,6 +78,8 @@ tm_shape(ulv_nf)+
               palette = "RdYlGn")+
   tm_layout(legend.outside = TRUE)
 ```
+
+!!!
 
 Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt **uniform indikator**.
 Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)

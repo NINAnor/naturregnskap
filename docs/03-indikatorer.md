@@ -60,7 +60,11 @@ B1 (Compositional state) |  For-historisk (*Undisturbed or minimally-disturbed c
 
 Denne indikatoren skal baseres på total metabolsk biomasse av større rovdyr, men foreløpig er kun ulv tatt med i utregningene.
 
-<img src="03-indikatorer_files/figure-html/unnamed-chunk-2-1.png" width="100%" />
+
+
+<img src="03-indikatorer_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
+!!!
 
 Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt **uniform indikator**.
 Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
@@ -81,7 +85,7 @@ Flere |  Variert | **Foreløpig ekskludert**
 
 
 
-<img src="03-indikatorer_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
+<img src="03-indikatorer_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 
 Dette er et typisk **frimerkekart**.
 Å inkludere denne indikatoren vil derfor ikke få stor invirkning på de romlig aggregerte tilstandsverdien (jf. Figur \@ref(fig:workflow)).

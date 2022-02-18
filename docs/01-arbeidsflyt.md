@@ -2,6 +2,7 @@
 
 
 
+
 Her beskrives den generelle, eller mest typisek, arbeidsflyten.
 
 <div class="figure">
