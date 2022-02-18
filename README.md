@@ -1,13 +1,8 @@
-På denne nettressursen samles informasjon, dokumentajon og resulatter rundt arbeidet med et økologisk tilstandsregnskap for Nordre Follo kommune, anno 2022.
 
-[Klikk her](https://ninanor.github.io/tilstandsregnskap_NordreFollo2022/) for å gå til en lesevennlig fremstilling.
+På denne nettressursen samles informasjon, dokumentajon og resultater relatert til utarbeidelsen av et naturregnskap i Nordre Follo kommune i 2022.
 
+[Klikk her](https://ninanor.github.io/naturregnskap/) for å gå til en lesevennlig fremstilling.
 
-Additional resources:
+<img src="figures/manandnature.jpg" alt="" width="500"/>
 
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
-
-
- 
+Photo: Edward Clack / Aerial view of Scrub Lane and Belfairs Nature Reserve
