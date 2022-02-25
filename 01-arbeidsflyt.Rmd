@@ -2,12 +2,10 @@
 
 
 ```{r, include=FALSE}
-library(tmap)
-library(raster)
 library(knitr)
 ```
 
-Her beskrives den generelle, eller mest typisek, arbeidsflyten.
+Her beskrives den generelle, eller mest typiske, arbeidsflyten.
 
 ```{r workflow, echo=F, out.width="100%", fig.cap="Dette er den typiske arbeidsflyten for generering av økologisk tilstandsregnskap for norske kommuner"}
 knitr::include_graphics("figures/ECA_Workflow_generisk_norsk.png", 
