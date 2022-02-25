@@ -1,0 +1,4 @@
+# Diskusjon og fremtidsutsikter
+
+
+...
