@@ -4,7 +4,6 @@
 ```{r setup, include=F, warning=F, message=F}
 library(raster)
 library(tmap)
-#library(sp)
 library(sf)
 ```
 
