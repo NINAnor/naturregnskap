@@ -20,7 +20,7 @@ link-citations: yes
 github-repo: NINAnor/naturregnskap
 ---
 
-# Bakgrunn
+# Bakgrunn 
   
 Denne boken tjener to formål.
 Det første er å beskrive og dokumentere metodene som NINA bruker i utabeidelselsen av naturregskap for kommuner (se også [NINA-infoside om naturregnskap](https://www.nina.no/B%C3%A6rekraftig-samfunn/Naturregnskap).
