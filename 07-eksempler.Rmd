@@ -3,6 +3,7 @@
 
 ```{r setup, include=F, warning=F, message=F}
 library(raster)
+library(rgdal)
 library(tmap)
 library(sf)
 ```
