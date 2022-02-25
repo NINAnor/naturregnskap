@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapittel 1 Naturregnskap hos NINA | README</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapittel 1 Naturregnskap hos NINA | README" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapittel 1 Naturregnskap hos NINA | README" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tilstandsregnskap - Nordre Follo 2022</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#naturregnskap-hos-nina"><i class="fa fa-check"></i><b>1</b> Naturregnskap hos NINA</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#repo-structure"><i class="fa fa-check"></i><b>1.1</b> Repo structure:</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#author-guidelines"><i class="fa fa-check"></i><b>1.2</b> Author Guidelines:</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#fork-the-repo"><i class="fa fa-check"></i><b>1.3</b> Fork the repo</a></li>
+<li class="chapter" data-level="1.4" data-path=""><a href="#serve"><i class="fa fa-check"></i><b>1.4</b> Serve</a></li>
+<li class="chapter" data-level="1.5" data-path=""><a href="#clean-book"><i class="fa fa-check"></i><b>1.5</b> Clean book</a></li>
+<li class="chapter" data-level="1.6" data-path=""><a href="#pull-request"><i class="fa fa-check"></i><b>1.6</b> Pull request</a></li>
+<li class="chapter" data-level="1.7" data-path=""><a href="#continous-integration-using-github-actions"><i class="fa fa-check"></i><b>1.7</b> Continous Integration using GitHub Actions</a></li>
+<li class="chapter" data-level="1.8" data-path=""><a href="#ancillary-data-og-documentation"><i class="fa fa-check"></i><b>1.8</b> Ancillary data og documentation</a></li>
+<li class="chapter" data-level="1.9" data-path=""><a href="#bookdown-documentation"><i class="fa fa-check"></i><b>1.9</b> Bookdown documentation</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="naturregnskap-hos-nina" class="section level1" number="1">
+<h1><span class="header-section-number">Kapittel 1</span> Naturregnskap hos NINA</h1>
+<p>På denne nettressursen samles informasjon, dokumentajon og resultater relatert til utarbeidelsen av et naturregnskap i Nordre Follo kommune i 2022.</p>
+<p><img src="figures/WWW_balloon.svg" /></p>
+<p><a href="https://ninanor.github.io/naturregnskap/">Klikk her</a> for å gå til en lesevennlig fremstilling.</p>
+<p><img src="figures/manandnature.jpg" alt="" width="500"/></p>
+<p>Bilde: Økologisk tilstand sier noe om hvilken påvirkning menneskelig aktivitet har på økosystemens integritet. Edward Clack / Aerial view of Scrub Lane and Belfairs Nature Reserve</p>
+<div id="repo-structure" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Repo structure:</h2>
+<p><code>.github</code> Contains the GitHub Actions workflow. Usually you’ll not need to edit anything here, unless you make use of a new package somewhere - then you need to add that package to the list.</p>
+<p><code>R</code> Contains R scripts that are not rendered as book chapters. This includes all the indikcator documentation and analyses.</p>
+<p><code>data</code> Contains raw data used for any of the analyses.</p>
+<p><code>figures</code>Contain images that are rendered somewhere in the book on in this readme file.</p>
+<p><code>man</code>Short for manual. Contains descriptions files (if any).</p>
+<p><code>output</code> Contains data produces by scripts inside this repo.</p>
+<p>Book chapters are numbered rdm files. The first chapter is called <code>index.Rmd</code>.</p>
+</div>
+<div id="author-guidelines" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Author Guidelines:</h2>
+<p>This is a guide for how NINA employees can work collaboratively to write the <a href="https://ninanor.github.io/naturregnskap/"><em>Naturregnskap</em></a> book.</p>
+</div>
+<div id="fork-the-repo" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Fork the repo</h2>
+<p>Create your own local copy of the repository where you make any changes you want. Preferably you will know which chapter you should be working on.</p>
+</div>
+<div id="serve" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Serve</h2>
+<p>You can set up a live rendering (visualisation) that shows how your edits will look like when published. See <code>R/serve.R</code>.</p>
+</div>
+<div id="clean-book" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Clean book</h2>
+<p>You may not need this, but in case you for some reason decided to render the book locally you can delete everything again, all the html and md files, using the <code>clean_book()</code> function.</p>
+</div>
+<div id="pull-request" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Pull request</h2>
+<p>When you’re happy with your edits you can create a pull request <a href="https://github.com/NINAnor/naturregnskap/pulls">here</a>. The moderator (currently Anders L. Kolstad) will need to accept the edits before the are merged to the main branch and published online in the book.</p>
+</div>
+<div id="continous-integration-using-github-actions" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Continous Integration using GitHub Actions</h2>
+</div>
+<div id="ancillary-data-og-documentation" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> Ancillary data og documentation</h2>
+</div>
+<div id="bookdown-documentation" class="section level2" number="1.9">
+<h2><span class="header-section-number">1.9</span> Bookdown documentation</h2>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
