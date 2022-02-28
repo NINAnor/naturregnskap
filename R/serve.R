@@ -7,7 +7,7 @@
 
 # More info:
 # https://bookdown.org/yihui/bookdown/serve-the-book.html
-
+ 
 # Anders
 hdir <- "C:/Users/anders.kolstad/Documents/Github/ECA_NF22"
 
