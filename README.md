@@ -36,23 +36,40 @@ Book chapters are numbered rdm files. The first chapter is called `index.Rmd`.
 
 This is a guide for how NINA employees can work collaboratively to write the [*Naturregnskap*](https://ninanor.github.io/naturregnskap/) book.
 
-## Fork the repo
-Create your own local copy of the repository where you make any changes you want. Preferably you will know which chapter you should be working on.
+**Overview**. 
+Everybody that will interact with and propose changes to the github repository will follow a workflow that involves *Pull Requests*, og PRs for short. 
+Admins will also do this, thus keeping the main branch and the web site stable. 
+Pull requests will be managed by one person, which for now is Anders L. Kolstad.
+Some users will not be comfortable with using github and these can ally with another user or contact Anders for help. 
 
-## Serve
+
+As we are not that many collaborators, we can use **branches**, and not forks, for our PRs. 
+Branches are deleted after every merge with the main branch.
+To then start another update, you should delete the corresponding local branch as well.
+In the shell (`Tools - Shell..`), type `git branch -d NAME-OF-Your-BRANCH`.
+Checkout the main branch and to a pull before creaing another development branch.
+
+Before starting, make sure you're added to the github repo with write admissions. 
+Email Anders Kolstad for help.
+Then start by cloning the repo and creating a **development branch** as described above.
+Try to keep your developemtn branch spesific to one topic or one file. 
+Commonly you will know which chapter you should be working on.
+
+**Local serving and Continous Integration using GitHub Actions**.
 You can set up a live rendering (visualisation) that shows how your edits will look like when published. See `R/serve.R`.
-
-
-
-## Continous Integration using GitHub Actions
-You do not need to render html-files locally. Just save the .Rmd files you are working on. A GitHub actions workflow is set up for continuous integartion, meaning the Rmd-files are rendered to html on a github-hosted server. These are then put in the gh-pages branch that hosts the web site. 
-
+You do not need to render html-files locally. 
+Just save the .Rmd files you are working on. 
+A GitHub actions workflow is set up for continuous integration, meaning the Rmd-files are rendered to html on a github-hosted server. 
+These are then put in the gh-pages branch that hosts the web site. 
 In case you for some reason decided to render the book locally you can delete everything again, all the html and md files, using the `clean_book()` function.
 
-## Pull request
-When you're happy with your edits you can create a pull request [here](https://github.com/NINAnor/naturregnskap/pulls). The moderator (currently Anders L. Kolstad) will need to accept the edits before the are merged to the main branch and published online in the book.
+When you're happy with your edits you can commit you changes (should be done quite frequently anyways) and push to the remote (i.e. GitHub) and then you create a **pull request** [here](https://github.com/NINAnor/naturregnskap/pulls). 
+The moderator (currently Anders L. Kolstad) will need to accept the edits before the are merged to the main branch and published online in the book.
 
 
 ## Ancillary data og documentation
-All the work that goes into the ecosystem account should be documented somewhere in this repo. All background analyses should be in English, and all the text that shows in the book should be in Norwegian. If you are working on something like an indicator for ecological condition, you can have an rmd-file in `R/conditionIndicators` and then render these to pdf if you like and put them in a subfolder `R/conditionIndicators/pdfOutput`. You can then link to the pdf when writing about thsi indicator inside the book. 
+All the work that goes into the ecosystem account should be documented somewhere in this repo. 
+All background analyses should be in English, and all the text that shows in the book should be in Norwegian. 
+If you are working on something like an indicator for ecological condition, you can have an rmd-file in `R/conditionIndicators` and then render these to pdf if you like and put them in a subfolder `R/conditionIndicators/pdfOutput`. 
+You can then link to the pdf when writing about this indicator inside the book. 
 
