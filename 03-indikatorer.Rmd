@@ -6,7 +6,7 @@ library(knitr)
 library(sf)
 ```
 
-Tilstandsindikatorer er re-skaerte variabler (jf. Figur \@ref(fig:workflow)).
+Tilstandsindikatorer er re-skalerte variabler (jf. Figur \@ref(fig:workflow)).
 De bør oppfylle så mange av de følgende punktene som mulig (liste hentet fra [@Nybø2017]):
 
 1. gi et representativt bilde av miljøets tilstand, miljøpåvirkninger eller samfunnets respons
@@ -79,7 +79,7 @@ tm_shape(ulv_nf)+
   tm_layout(legend.outside = TRUE)
 ```
 
-!!!
+
 
 Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt **uniform indikator**.
 Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
@@ -87,7 +87,7 @@ Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
 knitr::include_graphics("figures/ulv_ni.png")
 ```
 
-[Klikk her](rovdyr.html) for mer informasjon om utregegningen av rovdyrindikatoren.
+[Klikk her](https://github.com/NINAnor/naturregnskap/tree/main/R/conditionIndicators/pdfOutput/rovdyr_NordreFollo.pdf) for mer informasjon om utregegningen av rovdyrindikatoren.
 
 
 
@@ -122,7 +122,7 @@ Dette er et typisk **frimerkekart**.
 En annen utfordring med denne indikatoren er at tilstandsvariabelen egentlig er en kombinasjon av faktiske tilstandsvariabler og registrert menneskelige påvirkninger.
 
 
-[Klikk her](naturtyper.html) for mer informasjon.
+
 
 ## Ferskvann
 

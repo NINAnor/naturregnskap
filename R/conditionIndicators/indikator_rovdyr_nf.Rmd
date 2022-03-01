@@ -1,16 +1,15 @@
 ---
 title: "Indikator - Rovdyr i Nordre Follo"
 output:
-  html_document:
+  pdf_document:
     toc: true
     toc_depth: 3
-    toc_float: true
     
 knit: (function(input_file, encoding) {
-  out_dir <- '../../docs';
+  out_dir <- 'pdfOutput';
   rmarkdown::render(input_file,
  encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, 'rovdyr_NordreFollo.html'))})
+ output_file=file.path(dirname(input_file), out_dir, 'rovdyr_NordreFollo.pdf'))})
 ---
 
 
@@ -74,7 +73,7 @@ saveRDS(ulv_assemeble, "../data/ulv_assemble.rds")
 ```
 
 ```{r}
-ulv_assemeble <- readRDS("../data/ulv_assemble.rds")
+ulv_assemeble <- readRDS("data/ulv_assemble.rds")
 ```
 
 
@@ -95,7 +94,7 @@ Henter inn kart over norfre follo og hele laget samme verdi:
 ```
 
 ```{r, echo=F}
-ulv_nf <- readRDS("../data/outlineNF.rds") %>%
+ulv_nf <- readRDS("data/outlineNF.rds") %>%
   dplyr::select(geometry)
 
 ulv_nf$val <- val

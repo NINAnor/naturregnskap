@@ -45,7 +45,7 @@ Some users will not be comfortable with using github and these can ally with ano
 
 As we are not that many collaborators, we can use **branches**, and not forks, for our PRs. 
 Branches are deleted after every merge with the main branch.
-To then start another update, you should delete the corresponding local branch as well.
+To then start another update, you should [delete the corresponding local branch](https://www.cloudbees.com/blog/git-delete-branch-how-to-for-both-local-and-remote) as well.
 In the shell (`Tools - Shell..`), type `git branch -d NAME-OF-Your-BRANCH`.
 Checkout the main branch and to a pull before creaing another development branch.
 
