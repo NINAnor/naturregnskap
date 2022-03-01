@@ -2,7 +2,7 @@
 
 
 
-Tilstandsindikatorer er re-skaerte variabler (jf. Figur \@ref(fig:workflow)).
+Tilstandsindikatorer er re-skalerte variabler (jf. Figur \@ref(fig:workflow)).
 De bør oppfylle så mange av de følgende punktene som mulig (liste hentet fra [@Nybø2017]):
 
 1. gi et representativt bilde av miljøets tilstand, miljøpåvirkninger eller samfunnets respons
@@ -64,7 +64,7 @@ Denne indikatoren skal baseres på total metabolsk biomasse av større rovdyr, m
 
 <img src="03-indikatorer_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-!!!
+
 
 Denne indikatoren har helt lik skalert verdi for hele kommunen og det er en såkalt **uniform indikator**.
 Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
@@ -73,7 +73,7 @@ Slik ser oppløsning av dataene ut for hele norge (hentet fra Naturindeks.no)
 <p class="caption">(\#fig:ulvNI)Kart som viser oppløsningen av den skalerte ulveindikatoren fra NAturindeks.</p>
 </div>
 
-[Klikk her](rovdyr.html) for mer informasjon om utregegningen av rovdyrindikatoren.
+[Klikk her](https://github.com/NINAnor/naturregnskap/tree/main/R/conditionIndicators/pdfOutput/rovdyr_NordreFollo.pdf) for mer informasjon om utregegningen av rovdyrindikatoren.
 
 
 
@@ -92,7 +92,7 @@ Dette er et typisk **frimerkekart**.
 En annen utfordring med denne indikatoren er at tilstandsvariabelen egentlig er en kombinasjon av faktiske tilstandsvariabler og registrert menneskelige påvirkninger.
 
 
-[Klikk her](naturtyper.html) for mer informasjon.
+
 
 ## Ferskvann
 
