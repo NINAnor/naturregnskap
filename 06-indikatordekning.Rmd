@@ -28,7 +28,7 @@ datatable(minInd) %>%
   
 ```
 
-## Diskusjon 
+## Diskusjon
 
 Diskusjon rundt indikatordekningen og fremtidige utsikter.
 
