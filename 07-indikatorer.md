@@ -62,7 +62,7 @@ Denne indikatoren skal baseres på total metabolsk biomasse av større rovdyr, m
 
 
 
-<img src="03-indikatorer_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="07-indikatorer_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 
 
@@ -85,7 +85,7 @@ Flere |  Variert | **Foreløpig ekskludert**
 
 
 
-<img src="03-indikatorer_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
+<img src="07-indikatorer_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 
 Dette er et typisk **frimerkekart**.
 Å inkludere denne indikatoren vil derfor ikke få stor invirkning på de romlig aggregerte tilstandsverdien (jf. Figur \@ref(fig:workflow)).

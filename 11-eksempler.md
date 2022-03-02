@@ -6,7 +6,7 @@
 På denne siden vises det frem en del eksempler og diskusjonspunkter.
 
 
-## Tolv boligområder
+## Tolv boligområder {-}
 
 Hvilken oppløsning kan vi forvente fra økologisk tilstand?
 Kan økologisk tilstand brukes som kunnskapsgrunnlag i arealbrukssaker? 
@@ -22,7 +22,7 @@ Kan økologisk tilstand brukes til å informere om hvordan disse områdene bør 
 [//]: # (Skru på interaktivt kartmodus)
 
 
-<img src="07-eksempler_files/figure-html/unnamed-chunk-4-1.png" width="480" />
+<img src="11-eksempler_files/figure-html/unnamed-chunk-4-1.png" width="480" />
 
 
 
@@ -43,7 +43,7 @@ Denne kartleggingen kan kunne inngå som en del av et tilstandsregnskap og vil p
 
 
 
-## Indikatorer og variabler
+## Indikatorer og variabler {-}
 Her følger noen eksempler på ulike variabler og indikatorer og hvordan de kan inngå i [arbeidsflyten](arbeidsflyt.html).
 
 
@@ -59,7 +59,7 @@ Dette datasettet tetthet av solitaerebier representerer en arealdekkende modelle
 
 
 <div class="figure">
-<img src="07-eksempler_files/figure-html/bier-1.png" alt="Modellert artsrikhet av solitære bier (se tekst for referanse)." width="672" />
+<img src="11-eksempler_files/figure-html/bier-1.png" alt="Modellert artsrikhet av solitære bier (se tekst for referanse)." width="672" />
 <p class="caption">(\#fig:bier)Modellert artsrikhet av solitære bier (se tekst for referanse).</p>
 </div>
 
@@ -70,7 +70,7 @@ men det er heller ikke umulig at dette kan utvikles på sikt.
 Kartet er heldekkende, men denne variabelen er trolig mest relevant for åpent lavland, spesielt semi-naturlig mark, siden det er her man kan forvente å finne solitære bier.
 
 
-## Noen utfordringer ved vegg-til-vegg regnskap
+## Noen utfordringer ved vegg-til-vegg regnskap {-}
 
 I Nordre Follo skal det gjøres et vegg-til-vegg regnskap, i motsettning til i de nasjonale vurderingene hvor man har gjort ett og ett økosystem om gangen. Det vil si at man i Nordre Follo må ha indikatorer for alle de økosystemene eller arealtypene som finnes der. Som vi ser under så er det ganske mange. 
 
@@ -81,20 +81,20 @@ I Nordre Follo skal det gjøres et vegg-til-vegg regnskap, i motsettning til i d
 
 
 <div class="figure">
-<img src="07-eksempler_files/figure-html/unnamed-chunk-9-1.png" alt="Kart over Arealtyper i Nordre Follo kommune." width="480" />
+<img src="11-eksempler_files/figure-html/unnamed-chunk-9-1.png" alt="Kart over Arealtyper i Nordre Follo kommune." width="480" />
 <p class="caption">(\#fig:unnamed-chunk-9)Kart over Arealtyper i Nordre Follo kommune.</p>
 </div>
 
 Spesielt vannskelig blir det å finne indikatorer for våtmark, sterkt endret mark (inkl. bebygd areal) og semi-naturlig mark.  Realistisk sett vil det ikke bli mulig å få samme indikatordekning på alle arealer, som vi hadde i de nasjonale vurderingene. Samtidig vil oppløsning på den holistiske tilstandsvurderingen, basert på indikatorer som ligner de vi har brukt i de nasjonel tilstandsvurderingen, ikke gi grunnlag for sikkert å skille lokale områder. 
 
-## Tilnærminger til aggregering
+## Tilnærminger til aggregering {-}
 Metoden legger opp til å aggreggere verdier gjennom flere indikatator-rastere. 
 I denne aggregeringen er det viktig å få med seg usikkerhetene i hver indikator og ikke bare ta gjennomsnittet av gjennomsnittene.
 Her er et gernalisert eksempel som viser hvordan dette kan gjøres. 
 
 
 
-<img src="07-eksempler_files/figure-html/means-1.png" width="960" />
+<img src="11-eksempler_files/figure-html/means-1.png" width="960" />
 
 Hver av indikatorene har sin egen usikkerhet represnetert i tilsvarene rasterlag. 
 Vi regner ut total usikkerhet slik: 
@@ -108,11 +108,11 @@ Equation \@ref(eq:ncrep)
 
 hvor delta z er samplet usikkerhet for n antall indikatorer.
 
-<img src="07-eksempler_files/figure-html/errors-1.png" width="960" />
+<img src="11-eksempler_files/figure-html/errors-1.png" width="960" />
 
-Dette gir oss en samlet indeksverdi på 626.8 pluss minus 288.1.
+Dette gir oss en samlet indeksverdi på 626.9 pluss minus 288.
 
-## Registrer økologisk tilstand i felt
+## Registrer økologisk tilstand i felt {-}
 
 Dersom en skal beregne økologsik tilstand etter fagsystemet vil dette av flere grunner ha [begrenset oppløsning](#tolv-boligområder), og derfor noe begreset bruksverdi i konkrete arealbruksvurderinger innad i kommunene. 
 Det som kan være en løsning for å dekke dette behovet er lokal datainnsamling av tilpassede tilstandsindikatorer knyttet til naturtyper eller arealtyper. Det beste eksempelt på dette som vi vet om er [the biodiversity metric](http://nepubprod.appspot.com/publication/6049804846366720). 
