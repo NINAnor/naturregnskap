@@ -43,14 +43,16 @@ Some users will not be comfortable with using github and these can ally with ano
 
 **Fork the repo**.
 Contributors are asked to fork the NINAnor/naturregnskap repository to their own github user account. 
-![](figures/fork.png)
+
+![](figures/fork.jpg)
+
 Clone your fork down to your local computer. 
 Start by copying the repo's url.
 In RStudio, create a new project - from version control - from GitHub, and paste you url there.
 Make you edits to this project (to the main branch or any branch); commit; and push.
 Go to the NINAnor version of the repo and perform a PR from there.
 
-<img src="figures/prFromFork.png" alt="" width="700"/>
+<img src="figures/prFromFork.jpg" alt="" width="700"/>
 
 Now people can review your edits and suggest changes before merging them with the main branch in the NINAnor repo.
 If you make new commits now, after submitting a PR, these commits will become part of the PR.
