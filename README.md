@@ -48,7 +48,7 @@ Branches are deleted after every merge with the main branch.
 To then start another update, you should [delete the corresponding local branch](https://www.cloudbees.com/blog/git-delete-branch-how-to-for-both-local-and-remote) as well.
 In the shell (`Tools - Shell..`), type `git branch -d NAME-OF-Your-BRANCH`.
 Checkout the main branch and to a pull before creaing another development branch.
-
+ 
 Before starting, make sure you're added to the github repo with write admissions. 
 Email Anders Kolstad for help.
 Then start by cloning the repo and creating a **development branch** as described above.
