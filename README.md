@@ -59,7 +59,7 @@ You do not need to create a new PR or delete the first one.
 Now, importantly, everytime before you start working on your forked version, you need to update it with the main *base' repository at NINAnor.
 To to this, go to your forked repo at GitHub and click *Fetch upstream*.
 
-<img src="figures/fetchUpstream.png" alt="" width="700"/>
+<img src="figures/fetchUpstream.jpg" alt="" width="700"/>
 
 Return to RStudio, chose your forked project, and pull down from github.
 
