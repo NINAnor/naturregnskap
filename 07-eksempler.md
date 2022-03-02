@@ -110,7 +110,7 @@ hvor delta z er samplet usikkerhet for n antall indikatorer.
 
 <img src="07-eksempler_files/figure-html/errors-1.png" width="960" />
 
-Dette gir oss en samlet indeksverdi på 626 pluss minus 287.3.
+Dette gir oss en samlet indeksverdi på 625.7 pluss minus 287.
 
 ## Registrer økologisk tilstand i felt
 
