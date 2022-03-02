@@ -39,21 +39,43 @@ This is a guide for how NINA employees can work collaboratively to write the [*N
 **Overview**. 
 Everybody that will interact with and propose changes to the github repository will follow a workflow that involves *Pull Requests*, og PRs for short. 
 Admins will also do this, thus keeping the main branch and the web site stable. 
-Pull requests will be managed by one person, which for now is Anders L. Kolstad.
+Pull requests will be managed by Anders L. Kolstad.
 Some users will not be comfortable with using github and these can ally with another user or contact Anders for help. 
 
+**Fork the repo**.
+Contributors are asked to fork the NINAnor/naturregnskap repository to their own github user account. 
+![](figures/fork.png)
+Clone your fork down to your local computer. 
+Start by copying the repo's url.
+In RStudio, create a new project - from version control - from GitHub, and paste you url there.
+Make you edits to this project (to the main branch or any branch); commit; and push.
+Go to the NINAnor version of the repo and perform a PR from there.
+![](figures/prFromFork.png)
 
-As we are not that many collaborators, we can use **branches**, and not forks, for our PRs. 
+Now people can review your edits and suggest changes before merging them with the main branch in the NINAnor repo.
+If you make new commits now, after submitting a PR, these commits will become part of the PR.
+You do not need to create a new PR or delete the first one.
+
+Now, importantly, everytime before you start working on your forked version, you need to update it with the main *base' repository at NINAnor.
+To to this, go to your forked repo at GitHub and click *Fetch upstream*.
+![](figures/fetchUpstream.png)
+
+Return to RStudio, chose your forked project, and pull down from github.
+
+**Optional workflow based on branches**.
+As we are not that many collaborators, you can use **branches**, and not forks, for our PRs. 
+It is still recommended that you use forks as explained above. 
+If you decide to work via development branches, you can start off by cloning the repo to you local machine and initiate a new branch. 
+Make your edits here; commit; push; and do a PR.
 Branches are deleted after every merge with the main branch.
-To then start another update, you should [delete the corresponding local branch](https://www.cloudbees.com/blog/git-delete-branch-how-to-for-both-local-and-remote) as well.
+You should then [delete the corresponding local branch](https://www.cloudbees.com/blog/git-delete-branch-how-to-for-both-local-and-remote) as well, in RStudio.
 In the shell (`Tools - Shell..`), type `git branch -d NAME-OF-Your-BRANCH`.
-Checkout the main branch and to a pull before creaing another development branch.
- 
-Before starting, make sure you're added to the github repo with write admissions. 
+If you experience a build up of remote branches that you know are deleted on GitHub, you can prune them from the list in RStudio with this shell command: `git fetch -p`.
+Checkout the main branch and to a pull before creating another development branch.
+
+To work using branches, before starting, make sure you're added to the github repo with write admissions. 
 Email Anders Kolstad for help.
-Then start by cloning the repo and creating a **development branch** as described above.
-Try to keep your developemtn branch spesific to one topic or one file. 
-Commonly you will know which chapter you should be working on.
+
 
 **Local serving and Continous Integration using GitHub Actions**.
 You can set up a live rendering (visualisation) that shows how your edits will look like when published. See `R/serve.R`.
