@@ -56,7 +56,7 @@ Now people can review your edits and suggest changes before merging them with th
 If you make new commits now, after submitting a PR, these commits will become part of the PR.
 You do not need to create a new PR or delete the first one.
 
-Now, importantly, everytime before you start working on your forked version, you need to update it with the main *base' repository at NINAnor.
+Now, importantly, every time before you start working on your forked version, you need to update it with the main *base' repository at NINAnor.
 To to this, go to your forked repo at GitHub and click *Fetch upstream*.
 
 <img src="figures/fetchUpstream.png" alt="" width="700"/>
