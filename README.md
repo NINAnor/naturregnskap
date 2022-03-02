@@ -49,7 +49,8 @@ Start by copying the repo's url.
 In RStudio, create a new project - from version control - from GitHub, and paste you url there.
 Make you edits to this project (to the main branch or any branch); commit; and push.
 Go to the NINAnor version of the repo and perform a PR from there.
-![](figures/prFromFork.png)
+
+<img src="figures/prFromFork.png" alt="" width="700"/>
 
 Now people can review your edits and suggest changes before merging them with the main branch in the NINAnor repo.
 If you make new commits now, after submitting a PR, these commits will become part of the PR.
@@ -57,7 +58,8 @@ You do not need to create a new PR or delete the first one.
 
 Now, importantly, everytime before you start working on your forked version, you need to update it with the main *base' repository at NINAnor.
 To to this, go to your forked repo at GitHub and click *Fetch upstream*.
-![](figures/fetchUpstream.png)
+
+<img src="figures/fetchUpstream.png" alt="" width="700"/>
 
 Return to RStudio, chose your forked project, and pull down from github.
 
