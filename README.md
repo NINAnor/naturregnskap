@@ -49,7 +49,9 @@ Contributors are asked to fork the NINAnor/naturregnskap repository to their own
 Clone your fork down to your local computer. 
 Start by copying the repo's url.
 In RStudio, create a new project - from version control - from GitHub, and paste you url there.
-Make you edits to this project (to the main branch or any branch); commit; and push.
+Make you edits to this project (to the main branch or any branch).
+You should not create new files (chapters) without coordinating this with Anders first.
+Commit you edits and push to GitHub.
 Go to the NINAnor version of the repo and perform a PR from there.
 
 <img src="figures/prFromFork.jpg" alt="" width="700"/>
