@@ -14,17 +14,17 @@ Bilde: Økologisk tilstand sier noe om hvilken påvirkning menneskelig aktivitet
 
 ## Repo structure:
 
-`.github` Contains the GitHub Actions workflow. Usually you'll not need to edit anything here, unless you make use of a new package somewhere - then you need to add that package to the list.
++ [`.github`](.github) contains the GitHub Actions workflow. Usually you'll not need to edit anything here, unless you make use of a new package somewhere - then you need to add that package to the list.
 
-`R` Contains R scripts that are not rendered as book chapters. This includes all the indikcator documentation and analyses.
++ [`R`](R) contains R scripts that are not rendered as book chapters. This includes all the indikcator documentation and analyses.
 
-`data` Contains raw data used for any of the analyses.
++ [`data`](data) contains raw data used for any of the analyses.
 
-`figures`Contain images that are rendered somewhere in the book on in this readme file.
++ [`figures`](figures) contains images that are rendered somewhere in the book on in this readme file.
 
-`man`Short for manual. Contains descriptions files (if any).
++ [`man`](man) is short for manual. Contains descriptions files (if any).
 
-`output` Contains data produces by scripts inside this repo.
++ [`output`](output) contains data produces by scripts inside this repo.
 
 
 Book chapters are numbered rdm files. The first chapter is called `index.Rmd`.
