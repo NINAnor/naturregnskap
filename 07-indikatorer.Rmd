@@ -98,7 +98,7 @@ ECT-klasse | Referansestadie | Status
 Flere |  Variert | **Foreløpig ekskludert**
 
 ```{r, include=F, message=F}
-naturtyper <- st_read("output/scaledIndicatorMaps/shp/naturtyperMdir.shp")
+naturtyper <- sf::st_read("output/scaledIndicatorMaps/shp/naturtyperMdir.shp")
 nf <- readRDS("data/outlineNF.rds")
 ```
 
