@@ -17,9 +17,12 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2
       - name: Install packages
         run: |
-         install.packages(c("rmarkdown","bookdown","ggplot2", "knitr","readxl","DT","tmap","rgdal", "raster"))
-         install.packages("sf", type="binary")
+         install.packages(c("rmarkdown","bookdown","ggplot2", "knitr","readxl","DT","tmap","rgdal", "raster"))       
         shell: Rscript {0}
+      - name: Intstall sf
+        run: |
+         install.packages("sf", type="binary")
+        shell: Rscript{0} 
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - uses: actions/upload-artifact@v1
