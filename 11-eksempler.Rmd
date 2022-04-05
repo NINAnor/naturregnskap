@@ -21,7 +21,7 @@ Kan økologisk tilstand brukes til å informere om hvordan disse områdene bør 
 [//]: # (importer boligområdene. Shapefil levert av David Barton)
 ```{r, include=F}
 
-dat <- sf::st_read(dsn = "data/tolvBoligomraader/UtbyggingsOmrade_polygon.shp")
+dat <- sf::st_read(dsn = "data/supportingData/tolvBoligomraader/UtbyggingsOmrade_polygon.shp")
 ```
 
 [//]: # (Importerer omrisset til Nordre Follo)

@@ -1,0 +1,178 @@
+---
+title: "Indicator - Predators in Norwegian Forests"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    
+knit: (function(input_file, encoding) {
+  out_dir <- 'pdfOutput';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'PredatorsinNorwegianForests.pdf'))})
+---
+
+
+```{r setup, include=FALSE, message=FALSE}
+library(knitr)
+library(dplyr)
+library(raster)
+library(rgdal)
+library(tmap)
+library(sf)
+library(NIcalc)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Description
+This indicator reflectes the population sizes (in terms of metabolic biomass) of the main large mammalian predators in Norwegian forests: wolves, bears, bold eagle, and lynx.
+
+
+ECT-klasse | Geographic extant | Ecosystem  | Time series | Last year
+---------- | -------------     | ---------- | ------------| ----------
+B1         |  Norway           | Forets     | Yes         | 2019
+
+
+
+# Wolf
+
+Private username and password
+```{r}
+myUser <- "anders.kolstad@nina.no"
+myPwd  <- "" 
+```
+
+
+Import data from the Norwegian Nature Index.
+```{r import, eval=F}
+
+ulv <- NIcalc::importDatasetApi(
+  username = myUser,
+  password = myPwd,
+  indic = "Ulv",
+  year = c(1990,2000,2010,2014,2019))
+```
+
+
+Specify the entire land area of Norway as NIunits:
+```{r}
+myNIunits <- c(allArea = T, parts = T, counties = F)
+```
+
+Include all BSunits (municipalities)
+```{r}
+myPartOfTotal <- 0
+```
+
+Storing temp file to save time
+```{r, eval=FALSE}
+ulv_assemeble <- NIcalc::assembleNiObject(
+  inputData = ulv,
+  predefNIunits = myNIunits, 
+  partOfTotal = myPartOfTotal, 
+  indexType = "thematic",
+  part = "ecosystem",
+  total = "terrestrial")  
+saveRDS(ulv_assemeble, "cache/ulv_assemble.rds")
+```
+
+```{r}
+ulv_assemeble <- readRDS("cache/ulv_assemble.rds")
+```
+
+
+
+Extract raw values for expected (i.e. predicted) number of individuals in 2019
+
+```{r}
+(wolf2019 <- ulv_assemeble$indicatorValues$'2019')
+```
+There are eight values corresponding to the eight data regions.
+
+Then we can get the same for year 2010.
+```{r}
+wolf2010 <- ulv_assemeble$indicatorValues$'2010'
+```
+
+
+
+# Reference values
+We get the reference values in the same way as the expected values. The reference values are based on expert opinion, and is constant for all years.
+
+
+```{r}
+(ref <- ulv_assemeble$referenceValues)
+```
+
+# Map values to polygons
+To make these spatially explicit we need the map of the data regions.
+
+Importing data regions
+```{r}
+rovviltregioner <- sf::st_read("../../data/supportingData/rovviltregioner/rovviltregioner.shp")
+```
+
+
+```{r}
+tm_shape(rovviltregioner)+
+  tm_polygons(col = "region",
+              palette = "RdYlGn")
+```
+
+```{r}
+crs(rovviltregioner)
+```
+
+This needs to be converted to PROJ.7 
+
+```{r}
+forestPredadors2019 <- rovviltregioner
+forestPredadors2010 <- rovviltregioner
+```
+
+
+```{r}
+forestPredadors2019$value     <- wolf2019$expectedValue[match(forestPredadors2019$region, wolf2019$ICunitName)]
+forestPredadors2010$value     <- wolf2010$expectedValue[match(forestPredadors2010$region, wolf2010$ICunitName)]
+
+forestPredadors2019$reference <- ref$expectedValue[match(forestPredadors2019$region, ref$ICunitName)]
+forestPredadors2010$reference <- ref$expectedValue[match(forestPredadors2010$region, ref$ICunitName)]
+
+
+```
+
+
+```{r}
+
+values <- tm_shape(forestPredadors2019)+
+  tm_polygons(
+    title = "Wolves - 2019",
+    col = "value",
+    palette = "RdYlGn",
+    breaks = c(0, 10, 20, 30, 40, 50, 60))
+
+values2 <- tm_shape(forestPredadors2010)+
+  tm_polygons(
+    title = "Wolves - 2010",
+    col = "value",
+    palette = "RdYlGn",
+    breaks = c(0, 10, 20, 30, 40, 50, 60))
+
+refs <- tm_shape(forestPredadors2019)+
+  tm_polygons(
+    title = "Wolves - reference",
+    col = "reference")
+
+tmap_arrange(values, values2, refs)
+```
+
+
+# Export
+We will keep the original shape format for as long as possible, but this will later become rasterized.
+
+```{r, eval=F}
+sf::st_write(forestPredadors2019, "../../data/variables/forestPredators2019.shp")
+sf::st_write(forestPredadors2010, "../../data/variables/forestPredators2010.shp")
+
+```
+

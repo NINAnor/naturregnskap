@@ -1,0 +1,79 @@
+---
+title: "Artstetthet av solitære bier"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    fig_caption: yes
+    
+knit: (function(input_file, encoding) {
+  out_dir <- '../docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'tetthetsolitaerebier.html'))})
+---
+
+
+```{r setup, include=FALSE, message=FALSE}
+library(knitr)
+library(dplyr)
+library(tmap)
+library(raster)
+library(rgdal)
+library(sf)
+#library(DT)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Sist oppdatert: `r Sys.time()`
+<br>
+
+
+# Introduksjon
+
+Disse kartene bygger på [denne](https://www.sciencedirect.com/science/article/pii/S0169204622000032) og [denne](https://www.sciencedirect.com/science/article/pii/S0169204621002309) artikkelen. 
+Modellen gir heldekkende prediksjoner for artstetthet av solitære bier. Denne artsgruppen er knyttet til åpne områder, sådet er ikke så aktuel variabel/indikator for for eksempel skog.
+Modellen er heller ikke validert med data fra skog, og den er trent utelukkende med data fra slåttemark.
+
+
+[//]: # (Importerer omrisset til Nordre Follo)
+```{r, echo=F}
+nf <- readRDS("../data/outlineNF.rds")
+```
+
+
+[//]: # (Importerer hele datasettet med modellert artsrikhet av solitære bier)
+```{r, cache=T, eval=T, echo=F}
+dat <- raster("../data/pollinatorrikhet_clipped.tif", band=3)
+```
+
+
+
+
+[//]: # (omprojiser??)
+
+
+[//]: # (Skru på interaktivt kartmodus)
+```{r, include=F}
+tmap_mode("view")
+```
+
+```{r, fig.width=5, fig.height=7, message=F, echo=F}
+tm_basemap(c("OpenStreetMap", "Esri.WorldGrayCanvas", "Esri.WorldTopoMap"))+
+tm_shape(nf)+
+  tm_polygons(
+    col = "grey",
+    alpha=0.5)+
+tm_shape(dat)+
+  tm_raster(
+    title = "Artstetthet for solitære bier",
+    alpha = .6,
+    palette = "viridis",
+    legend.show = T)
+
+```
+
+
+
+

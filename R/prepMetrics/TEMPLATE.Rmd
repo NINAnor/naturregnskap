@@ -1,0 +1,46 @@
+---
+title: "Indicator - NameOfIndicator"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    
+knit: (function(input_file, encoding) {
+  out_dir <- 'pdfOutput';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'nameOfIndicator.pdf'))})
+---
+
+
+```{r setup, include=FALSE, message=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Description
+*Add a description about the metric/indicator and fill in the table below*.
+
+
+ECT-klasse | Geographic extant | Ecosystem   | Time series | Last year
+---------- | -------------     | ----------  | ------------| ----------
+?? e.g. A2 |  e.g Norway       | e.g. Forest | Yes/No      | e.g. 2022
+
+
+
+You can use the headers suggetsed below, and costumise as needed.
+
+# Data prepartion
+
+
+# Reference values
+
+# Map values to polygons
+
+
+# Export
+Export the maps with the variables to `data/variables/MyFile`. You should not rasterize shape files at this stage. If the data is in the shape format, you should export it using `sf::st_write()` with one column names `value`, and one column names `reference`. If you have a time series, you need one file per year and the year should come at the end of the file naem(all esle remeining the same).  If you have a raster, add the vallues to band 1, and the referecne value to band 2.   
+```{r, eval=F}
+#sf::st_write(..., "../../data/variables/....shp")
+```
+
