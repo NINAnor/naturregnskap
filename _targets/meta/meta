@@ -1,0 +1,7 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+forestPredators2019|stem|cb092b8fd0607846|67849d11a5e41358|1fdb3109287acf8b|-1331811963||t19087.7863032981s|562cbfc963407547|793513|rds|local|vector|||0.12||
+forestPredatorsFile|stem|cc2d106cfbbb1499|02f7f49be325456c|ef46db3751d8e999|-625521425|data/variables/forestPredators2019.shp|t19087.5662391805s|1485256b6789949a|1748788|file|local|vector|||6.14||
+forestsPredators2019|stem|cb092b8fd0607846|4f5e87497f2852be|1fdc3de816f1da9c|-418696509||t19087.7756874603s|562cbfc963407547|793513|rds|local|vector|||0.13||
+forestsPredatorsFile|stem|cc2d106cfbbb1499|02f7f49be325456c|ef46db3751d8e999|-1682661026|data/variables/forestPredators2019.shp|t19087.5662391805s|1485256b6789949a|1748788|file|local|vector|||4||
+map|stem|31f6a1964e89bee1|21dad5c4065a8b87|45019e0847ef66f1|-2042186616||t19087.7863038292s|25edcc1f7bb1c960|85|rds|local|vector|||0.02||
+mapPolygons|function|d2130c726f7a024c|||||||||||||||
