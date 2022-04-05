@@ -1,29 +1,30 @@
-# Naturregnskap hos NINA
+# Ecosystem Accounting at NINA
 
-På denne nettressursen samles informasjon, dokumentajon og resultater relatert til utarbeidelsen av et naturregnskap i Nordre Follo kommune i 2022.
 
-![](figures/WWW_balloon.svg) 
+This repo contains a worked example for how to produce and maintain an account for ecosystem extent and condition for a single municipality, in-line with the SEEA EA accounting standards. The condition account is produced via a semi-automated and reproducable workflow that is built using [`targets`](https://books.ropensci.org/targets/) and it has a strong emphasis on geographically explicit data (maps). The repo also produces a  [Norwegian ![](figures/book.svg){width=30} e-book](https://ninanor.github.io/naturregnskap/) that further communicates this work to end-users in local land area planning and management. This book also collates an account for several ecosystem services.  
 
-[Klikk her](https://ninanor.github.io/naturregnskap/) for å gå til en lesevennlig fremstilling.
-
-<img src="figures/manandnature.jpg" alt="" width="500"/>
-
-Bilde: Økologisk tilstand sier noe om hvilken påvirkning menneskelig aktivitet har på økosystemens integritet. Edward Clack / Aerial view of Scrub Lane and Belfairs Nature Reserve
+The example municipality is Nordre Follo, situated in Viken county, south-eastern Norway.
 
 
 ## Repo structure:
 
 + [`.github`](.github) contains the GitHub Actions workflow. Usually you'll not need to edit anything here, unless you make use of a new package somewhere - then you need to add that package to the list.
 
-+ [`R`](R) contains R scripts that are not rendered as book chapters. This includes all the indikcator documentation and analyses.
++ [`R`](R) contains R scripts that are not rendered as book chapters. This includes all the indicator documentation and analyses.
 
-+ [`data`](data) contains raw data used for any of the analyses.
+  + [`/prepMetrics`](data/prepMetrics) contains scripts that prepare the maps for metrices/variables that subsequently feeds into the targets workflow. The file write to `data/variables`.
+
++ [`data`](data) contains data:
+  
+  + [`/supportingData`](data/supportingData) contains data files that underlie the indicator analyses, such as the master raster grids.
+  
+  + [`/variables`](data/variables) contains maps with variables in original units, alongside their respective reference values. 
 
 + [`figures`](figures) contains images that are rendered somewhere in the book on in this readme file.
 
 + [`man`](man) is short for manual. Contains descriptions files (if any).
 
-+ [`output`](output) contains data produces by scripts inside this repo.
++ [`output`](output) contains data output (tables, maps, etc.) produced by the targets workflow.
 
 
 Book chapters are numbered rdm files. The first chapter is called `index.Rmd`.
