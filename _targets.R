@@ -3,6 +3,8 @@ library(targets)
 
 source("R/functions.R")
 source("R/mapPolygons.R")
+source("R/exportViz.R")
+
 
 # Set target-specific options such as packages.
 tar_option_set(packages = c("dplyr",
@@ -23,5 +25,8 @@ list(
              ),
   tar_target(map, 
              mapPolygons(forestPredators2019)
-             )
+             ),
+  tar_target(workflowFigure, 
+             exportVisnetwork()
+  )
 )

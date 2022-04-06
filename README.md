@@ -100,3 +100,17 @@ All background analyses should be in English, and all the text that shows in the
 If you are working on something like an indicator for ecological condition, you can have an rmd-file in `R/conditionIndicators` and then render these to pdf if you like and put them in a subfolder `R/conditionIndicators/pdfOutput`. 
 You can then link to the pdf when writing about this indicator inside the book. 
 
+
+# Targets
+The condition account is build using a semi-automated targets workflow that takes as input the maps of variables and their respective reference values, and retursn indicator maps, chage maps, and accounting tables at different aggretation levels. The figure below shows an updatetes status for the targets workflow.
+
+
+<div>
+  <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="800"
+      height="800"
+      src="figures/targetsWorkflow.html">
+  </iframe>
+</div>
+

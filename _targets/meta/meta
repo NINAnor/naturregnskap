@@ -1,7 +1,10 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-forestPredators2019|stem|cb092b8fd0607846|67849d11a5e41358|1fdb3109287acf8b|-1331811963||t19087.7863032981s|562cbfc963407547|793513|rds|local|vector|||0.12||
+exportVis|stem|60c85de45e4d9920|a34f32b6d52ef418|beee82f2d4d02dd6|-202356328||t19088.323474235s|3bd8f66805fd112b|45|rds|local|vector|||8.62||
+exportVisnetwork|function|3295f8d869f0dd92|||||||||||||||
+forestPredators2019|stem|cb092b8fd0607846|67849d11a5e41358|1fdb3109287acf8b|-1331811963||t19088.3234785939s|562cbfc963407547|793513|rds|local|vector|||0.17||
 forestPredatorsFile|stem|cc2d106cfbbb1499|02f7f49be325456c|ef46db3751d8e999|-625521425|data/variables/forestPredators2019.shp|t19087.5662391805s|1485256b6789949a|1748788|file|local|vector|||6.14||
 forestsPredators2019|stem|cb092b8fd0607846|4f5e87497f2852be|1fdc3de816f1da9c|-418696509||t19087.7756874603s|562cbfc963407547|793513|rds|local|vector|||0.13||
 forestsPredatorsFile|stem|cc2d106cfbbb1499|02f7f49be325456c|ef46db3751d8e999|-1682661026|data/variables/forestPredators2019.shp|t19087.5662391805s|1485256b6789949a|1748788|file|local|vector|||4||
-map|stem|31f6a1964e89bee1|21dad5c4065a8b87|45019e0847ef66f1|-2042186616||t19087.7863038292s|25edcc1f7bb1c960|85|rds|local|vector|||0.02||
+map|stem|31f6a1964e89bee1|21dad5c4065a8b87|45019e0847ef66f1|-2042186616||t19088.3234791018s|25edcc1f7bb1c960|85|rds|local|vector|||0||
 mapPolygons|function|d2130c726f7a024c|||||||||||||||
+workflowFigure|stem|60c85de45e4d9920|a34f32b6d52ef418|1160ee892754d8c9|-1362454464||t19088.3247157011s|3bd8f66805fd112b|45|rds|local|vector|||5.79||
