@@ -107,7 +107,7 @@ The condition account is build using a semi-automated targets workflow that take
 <img src="figures/ECA_workflow.png" alt="" width="700"/>
 Figure. Schematic, generic workflow for craeting the ecosystem condition account.
 
-
+ 
 <img src="figures/targetsWorkflow.png" alt="" width="700"/>
 Figure. Corresponding targets workflow.
 
