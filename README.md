@@ -1,7 +1,15 @@
 # Ecosystem Accounting at NINA
 
 
-This repo contains a worked example for how to produce and maintain an account for ecosystem extent and condition for a single municipality, in-line with the SEEA EA accounting standards. The condition account is produced via a semi-automated and reproducable workflow that is built using [`targets`](https://books.ropensci.org/targets/) and it has a strong emphasis on geographically explicit data (maps). The repo also produces a  [Norwegian e-book](https://ninanor.github.io/naturregnskap/) ![](figures/book.svg){width=30} that further communicates this work to end-users in local land area planning and management. This book also collates an account for several ecosystem services.  
+This repo contains a worked example for how to produce and maintain an account for ecosystem extent and condition for a single municipality, in-line with the SEEA EA accounting standards. The condition account is produced via a semi-automated and reproducable workflow that is built using [`targets`](https://books.ropensci.org/targets/) and it has a strong emphasis on geographically explicit data (maps). The repo also produces a  [Norwegian e-book](https://ninanor.github.io/naturregnskap/) 
+<a href="https://ninanor.github.io/naturregnskap/">
+<img src="figures/book.svg" alt="" width="30"/> 
+</a>
+that further communicates this work to end-users in local land area planning and management. This book also collates an account for several ecosystem services.  
+
+
+   
+
 
 The example municipality is Nordre Follo, situated in Viken county, south-eastern Norway.
 
