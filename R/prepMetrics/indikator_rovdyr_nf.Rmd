@@ -25,13 +25,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Description
-This indicator reflectes the population sizes (in terms of metabolic biomass) of the main large mammalian predators in Norwegian forests: wolves, bears, bold eagle, and lynx.
+This metric reflects the population sizes (in terms of metabolic biomass) of the main large mammalian predators in Norwegian forests: wolves, bears, bold eagle, and lynx.
 
 
 ECT-klasse | Geographic extant | Ecosystem  | Time series | Last year
 ---------- | -------------     | ---------- | ------------| ----------
 B1         |  Norway           | Forets     | Yes         | 2019
 
+
+Characteristic |
+---------------|
+Trophic interactions between lerge mammalian predators and herbivores|
+ 
 
 
 # Wolf

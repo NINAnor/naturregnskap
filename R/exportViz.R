@@ -2,8 +2,11 @@
 
 
 exportVisnetwork <- function(data){
+  path <- "figures/targetsWorkflow.html"
   visNetwork::visSave(tar_visnetwork(),
-                      "figures/targetsWorkflow.html")
+                      path)
+  webshot(path, zoom = 2, file = "figures/targetsWorkflow.png")
+  
 }
 
 

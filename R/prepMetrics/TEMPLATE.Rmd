@@ -27,8 +27,12 @@ ECT-klasse | Geographic extant | Ecosystem   | Time series | Last year
 ?? e.g. A2 |  e.g Norway       | e.g. Forest | Yes/No      | e.g. 2022
 
 
+Characteristic |
+---------------|
+*Describe the characteristic here*|
+ 
 
-You can use the headers suggetsed below, and costumise as needed.
+You can use the headers suggeted below, and costumise as needed.
 
 # Data prepartion
 

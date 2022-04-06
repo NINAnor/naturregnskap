@@ -1,7 +1,7 @@
 # Ecosystem Accounting at NINA
 
 
-This repo contains a worked example for how to produce and maintain an account for ecosystem extent and condition for a single municipality, in-line with the SEEA EA accounting standards. The condition account is produced via a semi-automated and reproducable workflow that is built using [`targets`](https://books.ropensci.org/targets/) and it has a strong emphasis on geographically explicit data (maps). The repo also produces a  [Norwegian ![](figures/book.svg){width=30} e-book](https://ninanor.github.io/naturregnskap/) that further communicates this work to end-users in local land area planning and management. This book also collates an account for several ecosystem services.  
+This repo contains a worked example for how to produce and maintain an account for ecosystem extent and condition for a single municipality, in-line with the SEEA EA accounting standards. The condition account is produced via a semi-automated and reproducable workflow that is built using [`targets`](https://books.ropensci.org/targets/) and it has a strong emphasis on geographically explicit data (maps). The repo also produces a  [Norwegian e-book](https://ninanor.github.io/naturregnskap/) ![](figures/book.svg){width=30} that further communicates this work to end-users in local land area planning and management. This book also collates an account for several ecosystem services.  
 
 The example municipality is Nordre Follo, situated in Viken county, south-eastern Norway.
 
@@ -102,15 +102,12 @@ You can then link to the pdf when writing about this indicator inside the book.
 
 
 # Targets
-The condition account is build using a semi-automated targets workflow that takes as input the maps of variables and their respective reference values, and retursn indicator maps, chage maps, and accounting tables at different aggretation levels. The figure below shows an updatetes status for the targets workflow.
+The condition account is build using a semi-automated targets workflow that takes as input the maps of variables and their respective reference values, and returns indicator maps, chage maps, and accounting tables at different aggretation levels. 
+
+<img src="figures/ECA_workflow.png" alt="" width="700"/>
+Figure. Schematic, generic workflow for craeting the ecosystem condition account.
 
 
-<div>
-  <iframe id="inlineFrameExample"
-      title="Inline Frame Example"
-      width="800"
-      height="800"
-      src="figures/targetsWorkflow.html">
-  </iframe>
-</div>
+<img src="figures/targetsWorkflow.png" alt="" width="700"/>
+Figure. Corresponding targets workflow.
 
