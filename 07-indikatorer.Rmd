@@ -31,7 +31,7 @@ I tillegg sier FN-standarden for tilstandsregnskap [@UN2021] at hver ECT-klasse 
 
 
 ```{r hovedfigurfjell, echo=F, out.width = "100%", fig.cap="Hovedfiguren fra rapporten om økologisk tilstand i norske fjelløkosystemer."}
-knitr::include_graphics("output/region_Norge_.png")
+knitr::include_graphics("figures/region_Norge_.png")
 ```
 
 Figur \@ref(fig:hovedfigurfjell) er hovedfiguren fra rapporten om økologisk tilstand i fjell i Norge, hvor det er brukt hele 19 indikatorer.
