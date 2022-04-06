@@ -27,7 +27,7 @@ I tillegg sier FN-standarden for tilstandsregnskap [@UN2021] at hver ECT-klasse 
 
 
 <div class="figure">
-<img src="output/region_Norge_.png" alt="Hovedfiguren fra rapporten om økologisk tilstand i norske fjelløkosystemer." width="100%" />
+<img src="figures/region_Norge_.png" alt="Hovedfiguren fra rapporten om økologisk tilstand i norske fjelløkosystemer." width="100%" />
 <p class="caption">(\#fig:hovedfigurfjell)Hovedfiguren fra rapporten om økologisk tilstand i norske fjelløkosystemer.</p>
 </div>
 
