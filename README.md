@@ -105,9 +105,9 @@ You can then link to the pdf when writing about this indicator inside the book.
 The condition account is build using a semi-automated targets workflow that takes as input the maps of variables and their respective reference values, and returns indicator maps, chage maps, and accounting tables at different aggretation levels. 
 
 <img src="figures/ECA_workflow.png" alt="" width="700"/>
-Figure. Schematic, generic workflow for craeting the ecosystem condition account.
+Figure. Schematic, generic workflow for creating the ecosystem condition account.
 
  
 <img src="figures/targetsWorkflow.png" alt="" width="700"/>
-Figure. Corresponding targets workflow.
+Figure. A snapshot (poor resolution) of the corresponding targets workflow.
 

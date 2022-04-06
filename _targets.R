@@ -50,15 +50,15 @@ list(
              ),
   tar_target(ecoMapExport,
              ecoMapExport(ecoMapCutandProject)
-  ),
+             ),
   tar_target(workflowFigure, 
-             exportVisnetwork()
-  )
+             exportVisnetwork(),
+             cue = tar_cue(mode = "always")
+             )
   
 )
 
-
+#targets::tar_cue()
 #tar_visnetwork()
-
 #tar_make()
 
