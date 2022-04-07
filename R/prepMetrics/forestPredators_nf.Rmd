@@ -30,12 +30,12 @@ This metric reflects the population sizes (in terms of metabolic biomass) of the
 
 ECT-klasse | Geographic extant | Ecosystem  | Time series | Last year
 ---------- | -------------     | ---------- | ------------| ----------
-B1         |  Norway           | Forets     | Yes         | 2019
+B1         |  Norway           | Forest     | Yes         | 2019
 
 
 Characteristic |
 ---------------|
-Trophic interactions between lerge mammalian predators and herbivores|
+Trophic interactions between large mammalian predators and herbivores|
  
 
 
@@ -50,7 +50,6 @@ myPwd  <- ""
 
 Import data from the Norwegian Nature Index.
 ```{r import, eval=F}
-
 ulv <- NIcalc::importDatasetApi(
   username = myUser,
   password = myPwd,
@@ -87,28 +86,6 @@ ulv_assemeble <- readRDS("cache/ulv_assemble.rds")
 
 
 
-Extract raw values for expected (i.e. predicted) number of individuals in 2019
-
-```{r}
-(wolf2019 <- ulv_assemeble$indicatorValues$'2019')
-```
-There are eight values corresponding to the eight data regions.
-
-Then we can get the same for year 2010.
-```{r}
-wolf2010 <- ulv_assemeble$indicatorValues$'2010'
-```
-
-
-
-# Reference values
-We get the reference values in the same way as the expected values. The reference values are based on expert opinion, and is constant for all years.
-
-
-```{r}
-(ref <- ulv_assemeble$referenceValues)
-```
-
 # Map values to polygons
 To make these spatially explicit we need the map of the data regions.
 
@@ -125,45 +102,64 @@ tm_shape(rovviltregioner)+
 ```
 
 ```{r}
-crs(rovviltregioner)
+#crs(rovviltregioner)
+```
+The variable values are added to their respective polygons, with one column per year. 
+The syntax is standardised, with variable value starting with a `v_` and ending with a four digit year.
+```{r}
+rovviltregioner$v_2019 <- 
+  ulv_assemeble$indicatorValues$'2019'$expectedValue[
+     match(rovviltregioner$region, ulv_assemeble$indicatorValues$'2019'$ICunitName)]
+
+rovviltregioner$v_2014 <- 
+  ulv_assemeble$indicatorValues$'2014'$expectedValue[
+     match(rovviltregioner$region, ulv_assemeble$indicatorValues$'2014'$ICunitName)]
+
+rovviltregioner$v_2010 <- 
+  ulv_assemeble$indicatorValues$'2010'$expectedValue[
+     match(rovviltregioner$region, ulv_assemeble$indicatorValues$'2010'$ICunitName)]
+
+rovviltregioner$v_2000 <- 
+  ulv_assemeble$indicatorValues$'2000'$expectedValue[
+     match(rovviltregioner$region, ulv_assemeble$indicatorValues$'2000'$ICunitName)]
+
+rovviltregioner$v_1990 <- 
+  ulv_assemeble$indicatorValues$'1990'$expectedValue[
+     match(rovviltregioner$region, ulv_assemeble$indicatorValues$'1990'$ICunitName)]
 ```
 
-This needs to be converted to PROJ.7 
 
+The reference values are based on expert opinion, and is constant for all years. The workflow only supports a single reference value, so we don't need to specify a year.
 ```{r}
-forestPredadors2019 <- rovviltregioner
-forestPredadors2010 <- rovviltregioner
+rovviltregioner$reference <- 
+  ulv_assemeble$referenceValues$expectedValue[
+     match(rovviltregioner$region, ulv_assemeble$referenceValues$ICunitName)]
+```
+
+
+Rename
+```{r}
+predator_var <- rovviltregioner
 ```
 
 
 ```{r}
-forestPredadors2019$value     <- wolf2019$expectedValue[match(forestPredadors2019$region, wolf2019$ICunitName)]
-forestPredadors2010$value     <- wolf2010$expectedValue[match(forestPredadors2010$region, wolf2010$ICunitName)]
 
-forestPredadors2019$reference <- ref$expectedValue[match(forestPredadors2019$region, ref$ICunitName)]
-forestPredadors2010$reference <- ref$expectedValue[match(forestPredadors2010$region, ref$ICunitName)]
-
-
-```
-
-
-```{r}
-
-values <- tm_shape(forestPredadors2019)+
+values <- tm_shape(predator_var)+
   tm_polygons(
     title = "Wolves - 2019",
-    col = "value",
+    col = "v_2019",
     palette = "RdYlGn",
     breaks = c(0, 10, 20, 30, 40, 50, 60))
 
-values2 <- tm_shape(forestPredadors2010)+
+values2 <- tm_shape(predator_var)+
   tm_polygons(
     title = "Wolves - 2010",
-    col = "value",
+    col = "v_2010",
     palette = "RdYlGn",
     breaks = c(0, 10, 20, 30, 40, 50, 60))
 
-refs <- tm_shape(forestPredadors2019)+
+refs <- tm_shape(predator_var)+
   tm_polygons(
     title = "Wolves - reference",
     col = "reference")
@@ -176,8 +172,6 @@ tmap_arrange(values, values2, refs)
 We will keep the original shape format for as long as possible, but this will later become rasterized.
 
 ```{r, eval=F}
-sf::st_write(forestPredadors2019, "../../data/variables/forestPredators2019.shp")
-sf::st_write(forestPredadors2010, "../../data/variables/forestPredators2010.shp")
-
+sf::st_write(predator_var, "../../data/variables/forestPredators.shp")
 ```
 
