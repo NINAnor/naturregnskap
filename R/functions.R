@@ -28,28 +28,44 @@ prep_municip <- function(data){
 # Crop to extent
 # Rasterize if vector data
 # Reproject if raster data
+# mask according to ecoMap
 
-v_process <- function(myIndicator, myGrid, myCounties){
+v_process <- function(myIndicator, myGrid, myCounties, delineation){
   
   #masterGrid_50_file <- "data/supportingData/masterGrid50m.tif"
   grid <- myGrid
   #counties <- sf::st_read(myCounties)
   viken <- counties[counties$NAVN=="Viken",]
-  
   #myIndicator <- "data/variables/forestPredators.shp"
+  #myIndicator <- st_read(myIndicator)
   
-  if(str_detect(myIndicator, "\\.shp")) {
+  
+  #if(str_detect(myIndicator, "\\.shp")) {
+  if("sf" %in% class(myIndicator)) {
     
-    indicator <- sf::st_read(myIndicator)
-    
-    indicator_c <- sf::st_crop(indicator, extent(viken))
+    indicator_c <- sf::st_crop(myIndicator, extent(viken))
     
     #rasterize cannot take sf objects, so hvaing to convert to spatVector
-    indicator_c_terra <- terra::vect(indicator_c)
+    i_c_terra <- terra::vect(indicator_c)
+    
+    
+    # make for-loop to create raster brick
+    cols <- names(i_c_terra)[str_detect(names(i_c_terra), "i_")]
+    cols_num <- which(names(i_c_terra) %in% cols)
+    
+    # create multilayered raster in terra by using c(). 
+    # Can we combine with lapply?
+    
+    #for(i in cols){
+    #  print(i)
+    #  out <- terra::rasterize(i_c_terra, grid, field=c(i)) 
+    #}
     
     out <- terra::rasterize(indicator_c_terra, grid, field=c("v_2010")) 
     #plot(out)
     #plot(viken$geometry, add=T)
+    
+    # mask raster brick according to ecomap
     
     out
 
@@ -60,13 +76,32 @@ v_process <- function(myIndicator, myGrid, myCounties){
 
 # *********************************************
 rescale <- function(data){
-  data_i <- data
-  data_i$indicatorValue <- data_i$value/data_i$reference
+  
+  
+  data_i <- sf::st_read(data)
+  
+  cols <- names(data_i)[str_detect(names(data_i), "v_")]
+  cols_num <- which(names(data_i) %in% cols)
+  
+  for(i in cols_num){
+    print(i)
+    data_i[,i] <- data_i[,i]/data_i[,"reference"]
+  }
+  
+  # ranema column and 
+  # remove the reference value. 
+  
+  names(data_i)[str_detect(names(data_i), "v_")] <- 
+    str_replace(cols,
+                "v_", "i_")
   data_i <- data_i %>% 
-    dplyr::select(-value, -reference)
+    dplyr::select(-reference)
+  
+  data_i
+  
 }
 
-
+head(data_i)
 # *********************************************
 i_export <- function(data){
   # ifelse()....

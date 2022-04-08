@@ -29,6 +29,18 @@ list(
              "data/variables/forestPredators.shp",
              format="file"
              ),
+  tar_target(i_fp, 
+             rescale(v_fp_file)
+              ),
+  tar_target(i_fp_process, 
+             v_process(i_fp, masterGrid_50, county_file, ecoMap)
+              ),
+  #tar_target(i_fp_mask,   # merge with process
+  #           maskEco(i_fp, ecoMap)
+  #),
+  tar_target(i_fp_ex,   # merge with rescale?
+             i_export(i_fp2019_mask)
+  ),
   tar_target(ecoMap_file,
              "data/supportingData/ecoMap_50m.tif",
              format="file"
@@ -51,25 +63,12 @@ list(
   tar_target(municipalites,
              prep_municip(municipality_file)
              ),
-  tar_target(v_processing, 
-             v_process(v_fp_file, masterGrid_50, county_file)
-             ),
   
-  tar_target(i_fp, 
-             rescale(v_fp)
-             ),
-  tar_target(i_fp_mask, 
-             maskEco(i_fp, ecoMap)
-             ),
-  tar_target(i_fp_ex,   # merge with rescale?
-             i_export(i_fp2019_mask)
-             ),
   
   
   tar_target(masterGrid_50,
              terra::rast(masterGrid_50_file)
              ),
-  
   tar_target(ecoMap,
              crop_and_export(ecoMap_file, counties),
              )
