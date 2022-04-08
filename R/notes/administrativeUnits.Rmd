@@ -1,0 +1,70 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+Import map of Viken county and all its municipalities
+
+```{r}
+
+myCounties <- "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp"
+counties <- sf::st_read(myCounties)
+viken <- counties[counties$NAVN=="Viken",]
+
+municipality_file <- "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp"
+municipality <- st_read(municipality_file)
+municipality_c <- st_crop(municipality, extent(viken))
+```
+
+Filter to exclude those municipalities otside of Viken
+```{r}
+mun_vik <- sf::st_intersection(municipality_c, viken)
+table(st_is_valid(mun_vik))
+```
+
+Try to remove polygons without area
+```{r}
+mun_vik$area <- st_area(mun_vik)
+#remove those irritating units
+mun_vik$area2 <- as.vector(mun_vik$area)
+
+# according to wikipedia the smalles municipality is Nesodden with ~60 km2
+
+#setting the limit to b 1 km2
+mun_vik2 <- mun_vik[mun_vik$area2>1000000,]
+
+# This gives us 51 municipalities, in accordance with the number from wikipedia
+```
+
+```{r}
+st_is_valid(viken)
+table(st_is_valid(mun_vik))
+table(st_is_valid(municipality_c))
+```
+```{r}
+tmap_mode("view")
+tmap_options(check.and.fix = TRUE)
+```
+
+
+```{r, fig.width=12}
+
+tm_shape(municipality_c)+
+  tm_polygons(
+    col="white",
+    alpha=.2)+
+tm_shape(mun_vik2)+
+  tm_polygons(
+    col="MAP_COLORS",
+    alpha=.7
+  )+
+  tm_text("navn")+
+tm_shape(viken)+
+  tm_polygons(
+    alpha=0,
+    lwd=3)
+  
+
+
+```
+

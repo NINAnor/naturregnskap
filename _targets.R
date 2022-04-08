@@ -11,7 +11,7 @@ tar_option_set(packages = c("dplyr",
                             "webshot",
                             "terra",
                             "raster",
-                            "fasterize"
+                            "stringr"
                             ))
 
 
@@ -26,7 +26,7 @@ tar_option_set(packages = c("dplyr",
 list(
   
   tar_target(v_fp_file, 
-             "data/variables/forestPredators2019.shp",
+             "data/variables/forestPredators.shp",
              format="file"
              ),
   tar_target(ecoMap_file,
@@ -41,15 +41,18 @@ list(
              "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp",
              format="file"
              ),
+  tar_target(counties,
+             sf::st_read(county_file)
+             ),
   tar_target(municipality_file,
-             "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022.shp",
+             "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp",
              format="file"
              ),
-  
-  
-  
+  tar_target(municipalites,
+             prep_municip(municipality_file)
+             ),
   tar_target(v_processing, 
-             v_process(v_fp_file, masterGrid_50_file, county_file)
+             v_process(v_fp_file, masterGrid_50, county_file)
              ),
   
   tar_target(i_fp, 
@@ -68,7 +71,7 @@ list(
              ),
   
   tar_target(ecoMap,
-             crop_and_export(ecoMap_file),
+             crop_and_export(ecoMap_file, counties),
              )
   
   

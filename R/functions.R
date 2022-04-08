@@ -1,24 +1,60 @@
 
+# *********************************************
+prep_municip <- function(data){
+  
+  #county_file <- "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp"
+  #counties <- sf::st_read(county_file)
+  
+  viken <- counties[counties$NAVN=="Viken",]
+  
+  mun <- st_read(data)
+  mun_c <- st_crop(mun, extent(viken)) 
+  mun_c_vik <- sf::st_intersection(mun_c, viken)
+  
+  # this results in some municipalities with zero area.
+  mun_c_vik$area <- st_area(mun_c_vik)
+  #remove those irritating units...
+  mun_c_vik$area2 <- as.vector(mun_c_vik$area)
+    # according to wikipedia the smalles municipality is Nesodden with ~60 km2
+    #setting the limit to b 1 km2
+  mun_c_vik <- mun_c_vik[mun_c_vik$area2>1000000,]
+  
+  mun_c_vik
+  
+}
+
 
 # *********************************************
 # Crop to extent
-# Rasterize is vector data, and reproject if raster data
+# Rasterize if vector data
+# Reproject if raster data
 
 v_process <- function(myIndicator, myGrid, myCounties){
   
-  #if(myIndicator  ) # if it contain shp string
-  # indicator <- sf::st_read(myIndicator)
-  grid <- terra::rast(myGrid)
-  counties <- sf::st_read(myCounties)
+  #masterGrid_50_file <- "data/supportingData/masterGrid50m.tif"
+  grid <- myGrid
+  #counties <- sf::st_read(myCounties)
   viken <- counties[counties$NAVN=="Viken",]
   
+  #myIndicator <- "data/variables/forestPredators.shp"
   
-  if("sf" %in% class(indicator)) {
-   
-    indicator_c <- sf::st_crop(indicator, extent(viken))
-    terra::rasterize(indicator_c, grid, field=c("v_2010", "v_2019")) 
+  if(str_detect(myIndicator, "\\.shp")) {
     
+    indicator <- sf::st_read(myIndicator)
+    
+    indicator_c <- sf::st_crop(indicator, extent(viken))
+    
+    #rasterize cannot take sf objects, so hvaing to convert to spatVector
+    indicator_c_terra <- terra::vect(indicator_c)
+    
+    out <- terra::rasterize(indicator_c_terra, grid, field=c("v_2010")) 
+    #plot(out)
+    #plot(viken$geometry, add=T)
+    
+    out
+
   }
+  
 }
 
 
@@ -38,20 +74,24 @@ i_export <- function(data){
 }
 
 # *********************************************
-crop_and_export <- function(data){
+# import and crop the map with ecosystem delineation
+crop_and_export <- function(data, counties){
   
-  file <- "data/supportingData/ecoMap_50m.tif"
-  eco <- terra::rast(file)
+  #file <- "data/supportingData/ecoMap_50m.tif"
+  
+  eco <- terra::rast(ecoMap_file)
   ecoTrans <- terra::project(eco, "EPSG:25833", method = "near") # I think it was OK already, but just in case
   #st_crs(ecoCropped)
   
-  nf <- readRDS("data/outlineNF.rds")
+  viken <- counties[counties$NAVN == "Viken",]
+  
+  ext <- raster::extent(viken)  # find new method using sf
+  
   # add a 1km buffer
-  ext <- raster::extent(nf)  # find new method using sf
-  ext@xmin <- ext@xmin - 1000
-  ext@xmax <- ext@xmax + 1000
-  ext@ymin <- ext@ymin - 1000
-  ext@ymax <- ext@ymax + 1000
+  #ext@xmin <- ext@xmin - 1000
+  #ext@xmax <- ext@xmax + 1000
+  #ext@ymin <- ext@ymin - 1000
+  #ext@ymax <- ext@ymax + 1000
   
   # Crop the ecosystem delineation map to the extant of Nordre Follo in order to decrease its file size
   ecoCropped <- terra::crop(ecoTrans, ext)
@@ -73,7 +113,7 @@ crop_and_export <- function(data){
   #  tm_raster(style="cat",
   #            palette = "Accent")
   
-  terra::writeRaster(ecoCropped, "data/supportingData/ecoNordreFollo.tif")
+  terra::writeRaster(ecoCropped, "data/supportingData/ecomap_viken.tif")
   ecoCropped
   
 }
