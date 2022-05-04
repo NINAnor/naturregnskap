@@ -1,0 +1,161 @@
+---
+title: "Targets test"
+output: pdf_document
+---
+# Testing the targets workflow
+
+```{r}
+source("functions.R")
+```
+
+```{r, message=F, warning=F}
+pkg <- c("dplyr",
+          "tmap",
+          "sf",
+          "webshot",
+          "terra",
+          "raster",
+          "stringr"
+          )
+lapply(pkg, require, character.only = TRUE)
+```
+
+
+# File / Variables
+```{r}
+v_fp_file <- "../data/variables/forestPredators.shp"
+```
+
+# Rescale
+```{r}
+
+data <- v_fp_file
+
+# load file
+data_i <- sf::st_read(data)
+head(data_i)  
+  
+```
+Get the column names that start with "v_" (these are the variable estimates)
+```{r}
+cols <- names(data_i)[str_detect(names(data_i), "v_")]
+cols
+```
+Get the associated column numbers
+```{r}
+cols_num <- which(names(data_i) %in% cols)
+cols_num
+```
+For each column identified above, divide the values with the reference value.
+The column with reference values is always names 'reference'.
+The warning is OK. It's just that data_i[,i] also include a 'geometry' column. 
+```{r}
+for(i in cols_num){
+    print(i)
+    data_i[,i] <- data_i[,i]/data_i[,"reference"]
+}
+head(data_i)
+```
+See how Rovviltregion 4 in 2019 had the value 20.3, and this was rescaled to become 20.3/44 = 0.46.
+
+Raname columns from v_ to i_ to say that they have become rescaled.
+```{r}
+names(data_i)[str_detect(names(data_i), "v_")] <- 
+    str_replace(cols,
+                "v_", "i_")
+```
+
+Remove the reference value.
+```{r}
+  data_i <- data_i %>% 
+    dplyr::select(-reference)
+  head(data_i)
+```
+
+# Process
+
+This target takes the indicator name and crops it to the extent of Viken
+county. It then rasterizes the data if it is not already, using the master grid as a
+template. Finally, it masks the raster based on the ecosystem delineation to remove
+pixels that do not correspond to the ecosystem that this indicator is designed for.
+
+```{r}
+county_file <- "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp"
+
+masterGrid_50_file <- "../data/supportingData/masterGrid50m.tif"
+
+ecoMap_file <- "../data/supportingData/ecomap_viken.tif"
+```
+
+```{r}
+counties <- sf::st_read(county_file)
+masterGrid_50 <- terra::rast(masterGrid_50_file)
+ecoMap <- terra::rast(ecoMap_file)
+
+indicator <- data_i
+```
+
+
+Subset the counties data to only include the geometry for Viken
+```{r}
+viken <- counties[counties$NAVN=="Viken",]
+```
+
+Crop to the extent of Viken
+```{r}
+indicator_c <- sf::st_crop(indicator, extent(viken))
+```
+the rasterize function cannot take sf objects, so we have to convert to spatVector
+```{r}
+i_c_terra <- terra::vect(indicator_c)
+```
+
+Get the names of the columns that contain indicator values
+```{r}
+cols <- names(i_c_terra)[str_detect(names(i_c_terra), "i_")]
+cols  
+```
+
+Get the corresponding column numbers
+```{r}
+cols_num <- which(names(i_c_terra) %in% cols)
+cols_num
+```
+make for-loop to create raster brick with one raster layer per year.
+```{r}
+
+RS <- rast(masterGrid_50)
+for(i in cols){
+      print(i)
+      out <- terra::rasterize(i_c_terra, masterGrid_50, field=c(i))
+      RS <- c(RS, out)
+    }
+```
+
+
+```{r}
+out <- terra::rasterize(i_c_terra, masterGrid_50, field=c("i_2010")) 
+```
+
+```{r}
+plot(out)
+```
+
+```{r}
+
+    
+    # create multilayered raster in terra by using c(). 
+    # Can we combine with lapply?
+    
+    
+    
+    
+    #plot(out)
+    #plot(viken$geometry, add=T)
+    
+    # mask raster brick according to ecomap
+    
+    out
+
+```
+

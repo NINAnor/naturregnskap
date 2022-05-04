@@ -30,40 +30,38 @@ prep_municip <- function(data){
 # Reproject if raster data
 # mask according to ecoMap
 
-v_process <- function(myIndicator, myGrid, myCounties, delineation){
+i_process <- function(indicator, counties, masterGrid_50, ecoMap){
   
-  #masterGrid_50_file <- "data/supportingData/masterGrid50m.tif"
-  grid <- myGrid
-  #counties <- sf::st_read(myCounties)
+  # Subset the counties data to only include the geometry for Viken
   viken <- counties[counties$NAVN=="Viken",]
-  #myIndicator <- "data/variables/forestPredators.shp"
-  #myIndicator <- st_read(myIndicator)
   
   
-  #if(str_detect(myIndicator, "\\.shp")) {
-  if("sf" %in% class(myIndicator)) {
+  # Workflow for SF objects:
+  #if(str_detect(indicatorName, "\\.shp")) {
+  
+  if("sf" %in% class(indicator)) {
     
-    indicator_c <- sf::st_crop(myIndicator, extent(viken))
+    # Crop to the extent of Viken county
+    indicator_c <- sf::st_crop(indicator, extent(viken))
     
-    #rasterize cannot take sf objects, so hvaing to convert to spatVector
+    # the rasterize function cannot take sf objects, so we have to convert to spatVector
     i_c_terra <- terra::vect(indicator_c)
     
-    
-    # make for-loop to create raster brick
+    #Get the names of the columns that contain indicator values
     cols <- names(i_c_terra)[str_detect(names(i_c_terra), "i_")]
+    
+    #Get the corresponding column numbers
     cols_num <- which(names(i_c_terra) %in% cols)
     
-    # create multilayered raster in terra by using c(). 
-    # Can we combine with lapply?
     
-    #for(i in cols){
-    #  print(i)
-    #  out <- terra::rasterize(i_c_terra, grid, field=c(i)) 
-    #}
+    # make for-loop to create raster brick with one raster layer per year.
+    RS <- rast(masterGrid_50)
     
-    out <- terra::rasterize(indicator_c_terra, grid, field=c("v_2010")) 
-    #plot(out)
-    #plot(viken$geometry, add=T)
+    for(i in cols){
+      print(i)
+      out <- terra::rasterize(i_c_terra, masterGrid_50, field=c(i))
+      RS <- c(RS, out)
+    }
     
     # mask raster brick according to ecomap
     
@@ -77,23 +75,31 @@ v_process <- function(myIndicator, myGrid, myCounties, delineation){
 # *********************************************
 rescale <- function(data){
   
-  
+  # load file
   data_i <- sf::st_read(data)
   
+  
+  # Workflow for SF objects:
+  # get the column names that start with "v_" (these are the variable estimates)
   cols <- names(data_i)[str_detect(names(data_i), "v_")]
+  
+  # get the associated column numbers
   cols_num <- which(names(data_i) %in% cols)
   
+  #For each column identified above, divide the values with the reference value.
+  #The column with reference values is always names 'reference'.
+  #The warning is OK. It's just that data_i[,i] also include a 'geometry' column. 
   for(i in cols_num){
     print(i)
     data_i[,i] <- data_i[,i]/data_i[,"reference"]
   }
   
-  # ranema column and 
-  # remove the reference value. 
-  
+  # from v_ to i_ to say that they have become rescaled
   names(data_i)[str_detect(names(data_i), "v_")] <- 
     str_replace(cols,
                 "v_", "i_")
+  
+  # also remove the column with reference values.
   data_i <- data_i %>% 
     dplyr::select(-reference)
   
@@ -101,16 +107,21 @@ rescale <- function(data){
   
 }
 
-head(data_i)
+
 # *********************************************
 i_export <- function(data){
   # ifelse()....
   sf::st_write(data, paste0("output/indicators/", deparse(substitute(data)), ".shp"))
 }
 
+
+
+
+
+
 # *********************************************
 # import and crop the map with ecosystem delineation
-crop_and_export <- function(data, counties){
+crop_and_save <- function(data, counties){
   
   #file <- "data/supportingData/ecoMap_50m.tif"
   

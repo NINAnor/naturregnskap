@@ -25,53 +25,114 @@ tar_option_set(packages = c("dplyr",
 
 list(
   
+  ## FILES / DELINEATION MAPS ---------------------------------------------
+  # These are maps/files that are used inside some of the other targets
+  
+  ###  ECOSYSTEMS ---------------------------------------------------------
+  # This is the ecosystem delineations map (raster format). It is too coarse 
+  # and flawed, and will need to improved in the future
+  tar_target(ecoMap_file,
+             "data/supportingData/ecoMap_50m.tif",
+             format="file"
+  ),
+  
+  ### MASTER GRID 50 m ------------------------------------------------
+  # This is a master raster grid (empty cell values) used to get all the
+  # rasters to align perfectly. This version has a 50 x 50 m resolution,
+  # which is more than sufficient for the condition account. The extent
+  # account uses a 10 x 10 m resolution, but that increases file sizes drastically.
+  # The coordinate reference system is EPSG:25833 - ETRS89 / UTM zone 33N and
+  # is based on the Elevation model (DEM) from Kartverket. See R/masterGrid.R.
+  tar_target(masterGrid_50_file,
+             "data/supportingData/masterGrid50m.tif",
+             format="file"
+  ),
+  
+  ### COUNTY LINES /FYLKESGRENSER --------------------------------------------
+  tar_target(county_file,
+             "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp",
+             format="file"
+  ),
+  
+  ### MUNICIPALITIES / KOMMUNEGRENSER ------------------------------------------
+  tar_target(municipality_file,
+             "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp",
+             format="file"
+  ),
+  
+  
+  ## FILES / VARIABLES ----------------------------------
+  # The variables are all the the data/ folder as shape files or raster
+  # The files contain georeferenced variable estimates for one or several years,
+  # and georeferenced reference values (same value for all years).
+  # New variables must be added manually into the code below
+  # (perhaps these files should be stored on P:/ rather than on gitHub?)
+  
   tar_target(v_fp_file, 
              "data/variables/forestPredators.shp",
              format="file"
              ),
+  
+  
+  ## RESCALE THE VARIABLES ---------------------------
+  # Currently only set up to handle SF objects.
+  # Note that variable estimates need to be in columns named 'v_YYYY',
+  # where YYYY is the year, and that reference values need to be in a column 
+  # names 'reference'. In the output, the columns with rescaled indicator values
+  # are named 'i_YYYY'.
   tar_target(i_fp, 
              rescale(v_fp_file)
               ),
-  tar_target(i_fp_process, 
-             v_process(i_fp, masterGrid_50, county_file, ecoMap)
-              ),
+  
+  
+  
+  ## PROCESS THE INDICATORS ----------------------------------------
+  # This target takes the indicator and crops it to the extent of Viken
+  # county. It then rasterizes the data if it is not already, using the master grid as a
+  # template. Finally, it masks the raster based on the ecosystem delineation to remove
+  # pixels that do not correspond to the ecosystem that this indicator is designed for. 
+  tar_target(
+    i_fp_process, 
+      i_process(
+        indicator        = i_fp,          
+        counties, masterGrid_50, ecoMap  # These three should be the same for all targets
+        )
+      ),
+  
+  
+  
+  
+  
   #tar_target(i_fp_mask,   # merge with process
   #           maskEco(i_fp, ecoMap)
   #),
   tar_target(i_fp_ex,   # merge with rescale?
              i_export(i_fp2019_mask)
   ),
-  tar_target(ecoMap_file,
-             "data/supportingData/ecoMap_50m.tif",
-             format="file"
-  ),
-  tar_target(masterGrid_50_file,
-             "data/supportingData/masterGrid50m.tif",
-             format="file"
-             ),
-  tar_target(county_file,
-             "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp",
-             format="file"
-             ),
+  
+  
+  ## READ FILES --------------------------------------------------
   tar_target(counties,
              sf::st_read(county_file)
              ),
-  tar_target(municipality_file,
-             "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp",
-             format="file"
-             ),
+  
   tar_target(municipalites,
              prep_municip(municipality_file)
              ),
   
-  
-  
   tar_target(masterGrid_50,
              terra::rast(masterGrid_50_file)
              ),
+  
+  
+  # this target read the ecosystem delineation file and crops it
+  # to the extent of Viken county (to reduce file size and handling time)
   tar_target(ecoMap,
-             crop_and_export(ecoMap_file, counties),
-             )
+      crop_and_save(
+        ecoMap_file, 
+        counties
+        ),
+      )
   
   
 )
