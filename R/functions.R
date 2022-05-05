@@ -144,22 +144,23 @@ rescale <- function(data){
 
 # *********************************************
 # import and crop the map with ecosystem delineation
-cropEco <- function(ecoMap_file, masterGrid_50){
+cropEco <- function(ecoMap_file_cropEco, masterGrid_50_cropEco){
   
   #ecoMap_file <- "data/supportingData/ecoMap_50m.tif"
   
   # load ecosystem delineation map for the entire country
-  eco <- terra::rast(ecoMap_file)
+  eco <- terra::rast(ecoMap_file_cropEco)
+  
   
   # This raster is already projected in EPSG:25833, but it is shifted slightly
   # compared to the master grid, so we will reproject using nearest neighbour
   # in order to get them perfectly aligned
   
-  ecoTrans <- terra::project(eco, masterGrid_50, method = "near", align = T) 
+  ecoTrans <- terra::project(eco, masterGrid_50_cropEco, method = "near", align = T) 
   
   
   # Crop the ecosystem delineation map to the extant of Viken in order to decrease its file size
-  ecoCropped <- terra::crop(ecoTrans, terra::ext(masterGrid_50))
+  ecoCropped <- terra::crop(ecoTrans, terra::ext(masterGrid_50_cropEco))
        #unique(ecoCropped) # ok, Whole values (categorical)
        #barplot(table(ecoCropped[]))
        #plot(ecoCropped)

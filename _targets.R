@@ -6,14 +6,15 @@ source("R/functions.R")
 
 # Set target-specific options such as packages.
 tar_option_set(packages = c("dplyr",
-                            "tmap",
-                            "sf",
-                            "webshot",
-                            "terra",
-                            "raster",
-                            "stringr"
-                            ))
+               "tmap",
+               "sf",
+               "webshot",
+               "terra",
+               "raster",
+               "stringr"
+               ))
 
+#tar_option_set(debug = "ecoMap")
 
 # List of terms
 
@@ -28,13 +29,7 @@ list(
   ## FILES / DELINEATION MAPS ---------------------------------------------
   # These are maps/files that are used inside some of the other targets
   
-  ###  ECOSYSTEMS ---------------------------------------------------------
-  # This is the ecosystem delineations map (raster format). It is too coarse 
-  # and flawed, and will need to improved in the future
-  tar_target(ecoMap_file,
-             "data/supportingData/ecoMap_50m.tif",
-             format="file"
-  ),
+  
   
   ### MASTER GRID 50 m ------------------------------------------------
   # This is a master raster grid (empty cell values) used to get all the
@@ -48,6 +43,14 @@ list(
              format="file"
   ),
   
+  ###  ECOSYSTEMS ---------------------------------------------------------
+  # This is the ecosystem delineations map (raster format). It is too coarse 
+  # and flawed, and will need to improved in the future
+  
+  tar_target(ecoMap_file,
+             "data/supportingData/ecoMap_50m.tif",
+             format="file"
+  ),
   ### COUNTY LINES /FYLKESGRENSER --------------------------------------------
   tar_target(county_file,
              "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp",
@@ -126,25 +129,34 @@ list(
       cropEco(
         ecoMap_file, 
         masterGrid_50
-        )
-      )
+              )
+             )
   
   
 )
 
-#tar_target(v_fp, 
-#           sf::st_read(v_fp_file)
-#),
+# View the pipeline DAG
+#targets::tar_visnetwork()
+
+#Alternatively:
+#targets::tar_glimpse(targets_only = F)
+
+# BUILD PIPELINE
+#targets::tar_make()
+
+# Debugging
+#targets::tar_make(callr_function = NULL, names = any_of("ecoMap"), shortcut = TRUE)
+
+
+# Define criteria for deciding when things are outdated:
+#targets::tar_cue()
 
 
 
+
+
+# An old target used to export the visNetwork figure
 #tar_target(workflowFigure, 
 #           exportVisnetwork(),
 #           cue = tar_cue(mode = "always")
 #           )
-
-#targets::tar_cue()
-#targets::tar_visnetwork()
-#targets::tar_glimpse(targets_only = F)
-#targets::tar_make()
-
