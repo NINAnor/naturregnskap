@@ -17,7 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2
       - name: Install packages
         run: |
-         install.packages(c("rmarkdown","bookdown","ggplot2", "knitr","readxl","DT","tmap","rgdal", "raster"))       
+         install.packages(c("rmarkdown","bookdown","ggplot2", "knitr","readxl","DT","tmap", "raster"))       
         shell: Rscript {0}
       - name: Intstall sf
         run: |

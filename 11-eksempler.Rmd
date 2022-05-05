@@ -2,8 +2,7 @@
 
 
 ```{r setup, include=F, warning=F, message=F}
-library(raster)
-library(rgdal)
+library(terra)
 library(tmap)
 library(sf)
 ```
@@ -83,8 +82,7 @@ Dette datasettet tetthet av solitaerebier representerer en arealdekkende modelle
 
 ```{r, include=F}
 nf <- readRDS("data/outlineNF.rds")
-dat <- raster("data/pollinatorrikhet_clipped.tif", band=3)
-
+dat <- terra::rast("data/pollinatorrikhet_clipped.tif", lyrs=3)
 ```
 
 
@@ -124,7 +122,7 @@ I Nordre Follo skal det gjøres et vegg-til-vegg regnskap, i motsettning til i d
 
 
 ```{r, cache=T, include=F}
-elc <- raster("data/ELC10_2018_nordreFollo_10m.tif")
+elc <- rast("data/ELC10_2018_nordreFollo_10m.tif")
 ```
 
 ```{r, include=F}
@@ -198,23 +196,26 @@ Her er et gernalisert eksempel som viser hvordan dette kan gjøres.
 
 ```{r, include=F}
 #Indicator A
-indA <- raster::raster(ncol=10, nrow=10)
-raster::values(indA) <- 1:ncell(indA)*5
+#indA <- raster::raster(ncol=10, nrow=10)
+indA <- rast(ncols=10, nrows=10)
+terra::values(indA) <- 1:ncell(indA)*5
 indAerr <- indA
 
 #Indicator B
-indB <- raster::raster(ncol=10, nrow=10)
-indB <- raster::setValues(indB,  rnorm(ncell(indB), 1000, 10))
+#indB <- raster::raster(ncol=10, nrow=10)
+indB <- rast(ncols=10, nrows=10)
+terra::values(indB) <- rnorm(ncell(indB), 1000, 10)
 # errors
 indBerr <- indB-500 
 
 #stack indicators
-inds <- raster::stack(indA,indB)
+inds <- c(indA,indB)
+
 #stack errors in the same order
-err <- raster::stack(indAerr, indBerr)
+err <- c(indAerr, indBerr)
 
 # Calculate mean per cell across indicator A and B
-r_mean <- raster::calc(inds, mean)
+r_mean <- terra::mean(inds)
 
 ```
 
@@ -226,7 +227,7 @@ plot(indB,   main="Indikator B",            asp=3, ylim=c(-100,100))
 
 ```
 
-Hver av indikatorene har sin egen usikkerhet represnetert i tilsvarene rasterlag. 
+Hver av indikatorene har sin egen usikkerhet representert i tilsvarene rasterlag. 
 Vi regner ut total usikkerhet slik: 
 
 Equation \@ref(eq:ncrep)
@@ -236,11 +237,11 @@ Equation \@ref(eq:ncrep)
     (\#eq:ncrep)
 \end{equation}
 
-hvor delta z er samplet usikkerhet for n antall indikatorer.
+hvor delta z er den samlede  usikkerheten for n antall indikatorer.
 
 ```{r errors, fig.width=10, fig.height=3, echo=F}
 # Calculate total error
-errors <- calc(err, function(x) sqrt(x[[1]]^2 + x[[2]]^2)/2)
+errors <- terra::app(err, function(x) sqrt(x[[1]]^2 + x[[2]]^2)/2)
 
 par(mfrow=c(1,3), mar=c(4,2,4,8))
 plot(errors,  main="Samlet usikkerhet",        asp =3, ylim=c(-100,100))
