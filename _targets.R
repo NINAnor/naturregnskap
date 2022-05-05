@@ -87,37 +87,32 @@ list(
   
   
   ## PROCESS THE INDICATORS ----------------------------------------
-  # This target takes the indicator and crops it to the extent of Viken
-  # county. It then rasterizes the data if it is not already, using the master grid as a
-  # template. Finally, it masks the raster based on the ecosystem delineation to remove
-  # pixels that do not correspond to the ecosystem that this indicator is designed for. 
+  # This target takes the indicator and crops it to the extent of the master grid (essentially
+  # Viken county). It then rasterizes the data if it is not already, using the master grid as a
+  # template. Finally, it masks the raster based on the ecosystem delineation and the chosen 
+  # ecosystem type to remove pixels that do not correspond to the ecosystem that this 
+  # indicator is designed for.
+  
+  # Choices for ecosystem type are "forests", "wetlands", "open areas", "urban", 
+  # "agriculture", "freshwater" and "marine"
   tar_target(
     i_fp_process, 
       i_process(
-        indicator        = i_fp,          
+        indicator = i_fp,
+        ecosystem = "forests", 
         counties, masterGrid_50, ecoMap  # These three should be the same for all targets
         )
       ),
   
   
-  
-  
-  
-  #tar_target(i_fp_mask,   # merge with process
-  #           maskEco(i_fp, ecoMap)
-  #),
-  tar_target(i_fp_ex,   # merge with rescale?
-             i_export(i_fp2019_mask)
-  ),
-  
-  
+ 
   ## READ FILES --------------------------------------------------
   tar_target(counties,
              sf::st_read(county_file)
              ),
   
   tar_target(municipalites,
-             prep_municip(municipality_file)
+             prep_municip(municipality_file, counties, masterGrid_50)
              ),
   
   tar_target(masterGrid_50,
@@ -128,10 +123,10 @@ list(
   # this target read the ecosystem delineation file and crops it
   # to the extent of Viken county (to reduce file size and handling time)
   tar_target(ecoMap,
-      crop_and_save(
+      cropEco(
         ecoMap_file, 
-        counties
-        ),
+        masterGrid_50
+        )
       )
   
   
@@ -150,5 +145,6 @@ list(
 
 #targets::tar_cue()
 #targets::tar_visnetwork()
-#tar_make()
+#targets::tar_glimpse(targets_only = F)
+#targets::tar_make()
 

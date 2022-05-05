@@ -1,6 +1,6 @@
 
 # *********************************************
-prep_municip <- function(data){
+prep_municip <- function(data, counties, masterGrid_50){
   
   #county_file <- "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp"
   #counties <- sf::st_read(county_file)
@@ -8,7 +8,7 @@ prep_municip <- function(data){
   viken <- counties[counties$NAVN=="Viken",]
   
   mun <- st_read(data)
-  mun_c <- st_crop(mun, extent(viken)) 
+  mun_c <- st_crop(mun, terra::ext(masterGrid_50)) 
   mun_c_vik <- sf::st_intersection(mun_c, viken)
   
   # this results in some municipalities with zero area.
@@ -30,7 +30,7 @@ prep_municip <- function(data){
 # Reproject if raster data
 # mask according to ecoMap
 
-i_process <- function(indicator, counties, masterGrid_50, ecoMap){
+i_process <- function(indicator, ecosystem, counties, masterGrid_50, ecoMap){
   
   # Subset the counties data to only include the geometry for Viken
   viken <- counties[counties$NAVN=="Viken",]
@@ -63,8 +63,38 @@ i_process <- function(indicator, counties, masterGrid_50, ecoMap){
       RS <- c(RS, out)
     }
     
-    # mask raster brick according to ecomap
     
+    # The ecosystem type is writted as text, but needs to be converted into the 
+    # correct code used in the ecoMap 
+    ecosystemCode <- ecosystem %>%
+      dplyr::recode(
+        forests = 101,
+        wetlands = 501,
+        'open areas' = 401,
+        urban = 940,
+        agriculture = 931,
+        freshwater = 601,
+        marine = 701)
+    
+    # Then we can create a mask
+    eco <- ecoMap
+    eco[eco != ecosystemCode] <- NA
+    
+    # The grid cells in in the indicator maps that aligne with NA values in eco will be cut out
+    out <- terra::mask(RS, eco)
+    
+    # Export
+    # Here we export the indicators as masked rasters.
+    # It could be an option to export before rasterizing and masking,
+    # but really the normative indicators are not valid outside the 
+    # extent of the reference values.
+    # Possibly we should export these as single rasters, and not stacks,
+    # but we can fix this later.
+    terra::writeRaster(
+      out, 
+      paste0("output/indicators/", deparse(substitute(indicator)), ".tif"),
+      overwrite = T)
+  
     out
 
   }
@@ -108,44 +138,33 @@ rescale <- function(data){
 }
 
 
-# *********************************************
-i_export <- function(data){
-  # ifelse()....
-  sf::st_write(data, paste0("output/indicators/", deparse(substitute(data)), ".shp"))
-}
-
-
 
 
 
 
 # *********************************************
 # import and crop the map with ecosystem delineation
-crop_and_save <- function(data, counties){
+cropEco <- function(ecoMap_file, masterGrid_50){
   
-  #file <- "data/supportingData/ecoMap_50m.tif"
+  #ecoMap_file <- "data/supportingData/ecoMap_50m.tif"
   
+  # load ecosystem delineation map for the entire country
   eco <- terra::rast(ecoMap_file)
-  ecoTrans <- terra::project(eco, "EPSG:25833", method = "near") # I think it was OK already, but just in case
-  #st_crs(ecoCropped)
   
-  viken <- counties[counties$NAVN == "Viken",]
+  # This raster is already projected in EPSG:25833, but it is shifted slightly
+  # compared to the master grid, so we will reproject using nearest neighbour
+  # in order to get them perfectly aligned
   
-  ext <- raster::extent(viken)  # find new method using sf
+  ecoTrans <- terra::project(eco, masterGrid_50, method = "near", align = T) 
   
-  # add a 1km buffer
-  #ext@xmin <- ext@xmin - 1000
-  #ext@xmax <- ext@xmax + 1000
-  #ext@ymin <- ext@ymin - 1000
-  #ext@ymax <- ext@ymax + 1000
   
-  # Crop the ecosystem delineation map to the extant of Nordre Follo in order to decrease its file size
-  ecoCropped <- terra::crop(ecoTrans, ext)
-  # unique(ecoCropped) # ok, Whole values (categorical)
-  #barplot(table(ecoCropped[]))
+  # Crop the ecosystem delineation map to the extant of Viken in order to decrease its file size
+  ecoCropped <- terra::crop(ecoTrans, terra::ext(masterGrid_50))
+       #unique(ecoCropped) # ok, Whole values (categorical)
+       #barplot(table(ecoCropped[]))
+       #plot(ecoCropped)
   
   # I don't have the legend, but from looking at the map it is at least clear that
-  
   # 101 = forest
   # 931 = Agricultire
   # 940 = Urban
@@ -155,24 +174,18 @@ crop_and_save <- function(data, counties){
   # 701 = marine
   
   
-  #tm_shape(ecoCropped)+
-  #  tm_raster(style="cat",
-  #            palette = "Accent")
+       #tm_shape(ecoCropped)+
+       #  tm_raster(style="cat",
+       #            palette = "Accent")
+       #
   
-  terra::writeRaster(ecoCropped, "data/supportingData/ecomap_viken.tif")
+  terra::writeRaster(ecoCropped, "data/supportingData/ecomap_viken.tif",
+                     overwrite = T)
   ecoCropped
   
 }
 
 
-
-
-# *********************************************
-maskEco <- function(data){
-  
-  
-  
-}
 
 
 ##### OLD FUNCTIONS #### 

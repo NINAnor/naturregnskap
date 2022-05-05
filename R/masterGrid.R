@@ -20,12 +20,12 @@ viken <- counties[counties$NAVN=="Viken",]
 #plot(dtm10)
 #plot(viken$geometry, add=T)
 
-# add a 1km buffer
-ext <- extent(viken)
-ext@xmin <- ext@xmin - 1000
-ext@xmax <- ext@xmax + 1000
-ext@ymin <- ext@ymin - 1000
-ext@ymax <- ext@ymax + 1000
+# it's possible to add a buffer like this
+#ext <- extent(viken)
+#ext@xmin <- ext@xmin - 1000
+#ext@xmax <- ext@xmax + 1000
+#ext@ymin <- ext@ymin - 1000
+#ext@ymax <- ext@ymax + 1000
 
 
 #master10 <- raster::crop(dtm10, ext)
@@ -87,9 +87,10 @@ t <- terra::merge(t1, t2, t4, t5, t6, t8, t9, t11, t12, t13, t14)
 plot(t)
 plot(viken$geometry, add=T)
 
+
 #dtm50 <- raster("data/supportingData/DTM50.tif")
 
-master50 <- raster::crop(t, ext)
+master50 <- terra::crop(t, terra::ext(viken))
 plot(master50)
 plot(viken$geometry, add=T)
 

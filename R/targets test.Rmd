@@ -85,6 +85,7 @@ county_file <- "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits
 masterGrid_50_file <- "../data/supportingData/masterGrid50m.tif"
 
 ecoMap_file <- "../data/supportingData/ecomap_viken.tif"
+
 ```
 
 ```{r}
@@ -101,9 +102,9 @@ Subset the counties data to only include the geometry for Viken
 viken <- counties[counties$NAVN=="Viken",]
 ```
 
-Crop to the extent of Viken
+Crop to the extent of the master gird (essentially the extent of viken)
 ```{r}
-indicator_c <- sf::st_crop(indicator, extent(viken))
+indicator_c <- sf::st_crop(indicator, terra::ext(masterGrid_50))
 ```
 the rasterize function cannot take sf objects, so we have to convert to spatVector
 ```{r}
@@ -130,32 +131,54 @@ for(i in cols){
       out <- terra::rasterize(i_c_terra, masterGrid_50, field=c(i))
       RS <- c(RS, out)
     }
+names(RS)
+```
+This temp file is just for plotting
+```{r}
+temp <- round(RS[[1]], 2)
 ```
 
+```{r, warning=F, fig.width= 3, fig.height=2}
+#plot(temp, plg=list(title="Indicator value", bty = "o"))
+```
+
+Mask raster brick according to ecomap and the chosen ecosystem
+```{r}
+ecosystem <- "forests"
+```
+
+These ecosystem codes should be confirmed
+```{r}
+ecosystemCode <- ecosystem %>%
+  dplyr::recode(
+                forests = 101,
+                wetlands = 501,
+                'open areas' = 401,
+                urban = 940,
+                agriculture = 931,
+                freshwater = 601,
+                marine = 701)
+
+```
 
 ```{r}
-out <- terra::rasterize(i_c_terra, masterGrid_50, field=c("i_2010")) 
+eco <- ecoMap
+eco[eco != ecosystemCode] <- NA
+```
+
+```{r, fig.width= 3, fig.height=2}
+plot(eco)
 ```
 
 ```{r}
-plot(out)
+tempM2 <- terra::mask(RS, eco)
 ```
 
 ```{r}
-
-    
-    # create multilayered raster in terra by using c(). 
-    # Can we combine with lapply?
-    
-    
-    
-    
-    #plot(out)
-    #plot(viken$geometry, add=T)
-    
-    # mask raster brick according to ecomap
-    
-    out
-
+plot(tempM2$i_2019)
 ```
+
+
+
+
 
