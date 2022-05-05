@@ -96,7 +96,7 @@ Her er et gernalisert eksempel som viser hvordan dette kan gjøres.
 
 <img src="11-eksempler_files/figure-html/means-1.png" width="960" />
 
-Hver av indikatorene har sin egen usikkerhet represnetert i tilsvarene rasterlag. 
+Hver av indikatorene har sin egen usikkerhet representert i tilsvarene rasterlag. 
 Vi regner ut total usikkerhet slik: 
 
 Equation \@ref(eq:ncrep)
@@ -106,11 +106,11 @@ Equation \@ref(eq:ncrep)
     (\#eq:ncrep)
 \end{equation}
 
-hvor delta z er samplet usikkerhet for n antall indikatorer.
+hvor delta z er den samlede  usikkerheten for n antall indikatorer.
 
 <img src="11-eksempler_files/figure-html/errors-1.png" width="960" />
 
-Dette gir oss en samlet indeksverdi på 627.4 pluss minus 288.5.
+Dette gir oss en samlet indeksverdi på 625.1 pluss minus 286.4.
 
 ## Registrer økologisk tilstand i felt {-}
 
