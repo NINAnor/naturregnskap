@@ -52,7 +52,9 @@ skog <- NIcalc::importDatasetApi(
   indic = NULL,
   year = c("1990","2000","2010","2014","2019"))
 
-saveRDS(skog, "P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog.rds")
+#saveRDS(skog, "P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog.rds")
+#saveRDS(skog, "/data/P-Prosjekter/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog.rds")
+
 
 rm(skog)
 rm(myPwd)
@@ -62,31 +64,32 @@ Load data back from the server
 ```{r}
 #fjelldat <- readRDS("/data/P-Prosjekter/41201042_okologisk_tilstand_fastlandsnorge_2020_dataanaly/fjell2021/data/naturindeks/NIfjell-1990-2019.rds")
 
-skog <- readRDS("P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog.rds")
+skog <- readRDS("/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog.rds")
 ```
+
 List the 89 indikcators
 ```{r}
 (inds <- skog$indicators$name)
 ```
 
 Assemble dataset *(runtime approx. )*
-```{r}
+```{r, eval =F}
 
-skog2 <- c(skog, NIunits = list(skog$BSunits))
-skog2$NIunits$BSunitId <- skog2$NIunits$id
+#skog2 <- c(skog, NIunits = list(skog$BSunits))
+#skog2$NIunits$BSunitId <- skog2$NIunits$id
 
 A <- NIcalc::assembleNiObject(
-  inputData = skog2,
-  predefNIunits = c(allArea = F, parts = T, counties = F),
+  inputData = skog,
+  predefNIunits = c(allArea = T, parts = F, counties = F),
   partOfTotal = 0.01, 
   indexType = "ecosystem",
   part = "ecosystem",
   total = "terrestrial")
 
-saveRDS(A, "P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_assembled.rds")
+saveRDS(A, "/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_assembled.rds")
 ```
 Looking for missing values
-```{r}
+```{r, eval=F}
 D <- NIcalc::imputeDiagnostics(x = A,
   nSim = 10,
   transConst = 0.01,
@@ -94,11 +97,11 @@ D <- NIcalc::imputeDiagnostics(x = A,
 ```
 
 
-```{r}
+```{r, eval=F}
 D$diagnostics$mdDistribuiton
 ```
 
-It loks quite good from the year 2000. 
+It looks quite good from the year 2000. 
 Imputing data:
 
 ```{r, eval=F}
@@ -111,11 +114,11 @@ I <- NIcalc::imputeData(x = A,
 saveRDS(I, "P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_imputed.rds")
 ```
 
-```{r}
-I <- readRDS("P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_imputed.rds")
+```{r, eval=F}
+I <- readRDS("/data/Egenutvikling//41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_imputed.rds")
 ```
 
-```{r}
+```{r, eval=F}
 I2 <- NIcalc::impStand(x = A,
              imputations = I)
 ```
@@ -123,7 +126,7 @@ I2 <- NIcalc::impStand(x = A,
 
 
 Calculate index values
-```{r}
+```{r, eval = F}
 NI <- NIcalc::calculateIndex(
   x       = A,
   #imputations = I2,
@@ -138,14 +141,14 @@ NI <- NIcalc::calculateIndex(
   awbs=F # arealvekting basert på fjellareal i hver kommune
 )
 
-saveRDS(NI, "P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_index.rds")
+saveRDS(NI, "/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_index.rds")
 ```
 
-```{r}
+```{r, eval=F}
 length(NI$E$`1990`$BSunitIndices)
 ```
 
-```{r}
+```{r, eval=F}
 NIunits <- names(NI)
 myYears <- c("1990","2000","2010","2014","2019")
 
@@ -165,13 +168,14 @@ for(i in 1:length(NIunits)){
   
 }
 ```
-I dont think I had to define NIunits above. I still get the index per BSunit here:
-```{r}
+
+
+```{r, eval=F}
 NI$N$`1990`$BSunitIndices[1,1]
 ```
 
-There are 10000 estimates per BSunit. Here are thefisrt 3 for Bodø
-```{r}
+There are 10000 estimates per BSunit. Here are the first 3 for Bodø
+```{r, eval=F}
 NI$N$`1990`$BSunitIndices[1,1:3]
 ```
 
