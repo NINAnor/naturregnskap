@@ -31,7 +31,7 @@ list(
   
   
   
-  ### MASTER GRID 50 m ------------------------------------------------
+  ### Master grid 50 m ------------------------------------------------
   # This is a master raster grid (empty cell values) used to get all the
   # rasters to align perfectly. This version has a 50 x 50 m resolution,
   # which is more than sufficient for the condition account. The extent
@@ -43,7 +43,7 @@ list(
              format="file"
   ),
   
-  ###  ECOSYSTEMS ---------------------------------------------------------
+  ###  Ecosystems ---------------------------------------------------------
   # This is the ecosystem delineations map (raster format). It is too coarse 
   # and flawed, and will need to improved in the future
   
@@ -51,13 +51,13 @@ list(
              "data/supportingData/ecoMap_50m.tif",
              format="file"
   ),
-  ### COUNTY LINES /FYLKESGRENSER --------------------------------------------
+  ### Counties   ------------------------------------------------------------
   tar_target(county_file,
              "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_County/Fylke_polygon_2020.shp",
              format="file"
   ),
   
-  ### MUNICIPALITIES / KOMMUNEGRENSER ------------------------------------------
+  ### Municipalities----------------------------------------------------
   tar_target(municipality_file,
              "R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp",
              format="file"
@@ -71,6 +71,8 @@ list(
   # New variables must be added manually into the code below
   # (perhaps these files should be stored on P:/ rather than on gitHub?)
   
+  
+  ### Forest predators -----------------------------------------
   tar_target(v_fp_file, 
              "data/variables/forestPredators.shp",
              format="file"
@@ -83,6 +85,9 @@ list(
   # where YYYY is the year, and that reference values need to be in a column 
   # names 'reference'. In the output, the columns with rescaled indicator values
   # are named 'i_YYYY'.
+  
+  
+  
   tar_target(i_fp, 
              rescale(v_fp_file)
               ),
@@ -98,6 +103,7 @@ list(
   
   # Choices for ecosystem type are "forests", "wetlands", "open areas", "urban", 
   # "agriculture", "freshwater" and "marine"
+  
   tar_target(
     i_fp_process, 
       i_process(
@@ -135,7 +141,7 @@ list(
   
 )
 
-# View the pipeline DAG
+# VIEW the pipeline DAG
 #targets::tar_visnetwork()
 
 #Alternatively:

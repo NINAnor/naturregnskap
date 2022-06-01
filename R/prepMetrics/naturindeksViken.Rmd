@@ -126,11 +126,8 @@ I2 <- NIcalc::impStand(x = A,
 
 
 Calculate index values
-<<<<<<< HEAD
+
 ```{r, eval=F}
-=======
-```{r, eval = F}
->>>>>>> 5014229f87ee72f684901d4e114937510444e42b
 NI <- NIcalc::calculateIndex(
   x       = A,
   #imputations = I2,
@@ -148,7 +145,6 @@ NI <- NIcalc::calculateIndex(
 saveRDS(NI, "/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_index.rds")
 ```
 
-<<<<<<< HEAD
 ```{r}
 NI <- readRDS("P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_index.rds")
 ```
@@ -183,9 +179,10 @@ M2 <- sf::st_read("R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUn
 df$BSunits %in% M$navn
 df$BSunits %in% M2$KOMMUNENAV
 df$BSunits[17]
-=======
+```
+
 ```{r, eval=F}
-length(NI$E$`1990`$BSunitIndices)
+#length(NI$E$`1990`$BSunitIndices)
 ```
 
 ```{r, eval=F}
@@ -217,7 +214,6 @@ NI$N$`1990`$BSunitIndices[1,1]
 There are 10000 estimates per BSunit. Here are the first 3 for Bodø
 ```{r, eval=F}
 NI$N$`1990`$BSunitIndices[1,1:3]
->>>>>>> 5014229f87ee72f684901d4e114937510444e42b
 ```
 
 
