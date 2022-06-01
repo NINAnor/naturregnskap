@@ -16,6 +16,10 @@ knit: (function(input_file, encoding) {
 ```{r setup, include=FALSE, message=FALSE}
 library(knitr)
 library(tmap)
+library(reshape2)
+library(tmap)
+library(tmaptools)
+library(sf)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -176,6 +180,7 @@ df$kommuneID[17]
 df$kommuneID %in% M3$KommNR # YES
 ```
 
+# Map values to polygons
 Putting the index values and the standard deviations into the correct shape file
 ```{r}
 
@@ -207,56 +212,62 @@ M3$sd_2019 <- df$sd_2019[match(M3$KommNR, df$kommuneID)]
 
 ```
 
+```{r}
+M3melt <- reshape2::melt(M3, id.vars = c("KommNR", "geometry"),
+                         measure.vars = c("v_1990","v_2000","v_2010","v_2014","v_2019"),
+                         variable.name = "Year",
+                         value.name = "natureIndex"
+                      )
+
+M3meltSD <- reshape2::melt(M3, id.vars = c("KommNR", "geometry"),
+                         measure.vars = c("sd_1990",
+                                          "sd_2000",
+                                          "sd_2010",
+                                          "sd_2014",
+                                          "sd_2019"),
+                         variable.name = "Year",
+                         value.name = "SD"
+                      )
+```
 
 
 ```{r}
-tm_shape(M3)+
-  tm_polygons(col = 'v_1990',
-              alpha=0.5)
+tm_shape(st_as_sf(M3melt))+
+  tm_polygons(
+    title = "Nature Index for Forests",
+    col = 'natureIndex',
+    palette = get_brewer_pal("Spectral", n = 5, contrast = c(0, 1)),
+    style = "fixed", breaks = seq(0,1,0.2))+
+  tm_facets('Year')
 ```
 
-
-```{r, eval=F}
-NIunits <- names(NI)
-myYears <- c("1990","2000","2010","2014","2019")
-
-IND_samp <- data.frame(reg  = rep(NIunits, each=length(myYears)*10000),
-                       year = rep(myYears, each=10000, times= length(NIunits)),
-                       val  = NA)
-
-for(i in 1:length(NIunits)){
-  for(n in 1:length(myYears)){
-    #print(i)
-    #print(n)
-    temp <- fjellIndex2[[i]][[n]]$index
-    IND_samp$val[IND_samp$reg == NIunits[i] &
-                    IND_samp$year == myYears[n]] <- temp
-    
-  }
-  
-}
+```{r}
+tm_shape(st_as_sf(M3meltSD))+
+  tm_polygons(
+    title = "SD(Nature Index for Forests)",
+    col = 'SD')+
+  tm_facets('Year')
 ```
-
-
-```{r, eval=F}
-NI$N$`1990`$BSunitIndices[1,1]
-```
-
-There are 10000 estimates per BSunit. Here are the first 3 for Bodø
-```{r, eval=F}
-NI$N$`1990`$BSunitIndices[1,1:3]
-```
-
 
 
 # Reference values
+The values are already normalised, but adding a dummy column for consistency.
+```{r}
+M3$reference <- 1
+```
 
-# Map values to polygons
+
 
 
 # Export
-Export the maps with the variables to `data/variables/MyFile`. You should not rasterize shape files at this stage. If the data is in the shape format, you should export it using `sf::st_write()` with one column names `value`, and one column names `reference`. If you have a time series, you need one file per year and the year should come at the end of the file name (all else remaining the same).  If you have a raster, add the vallues to band 1, and the referece value to band 2.   
+Export the maps with the variables to `data/variables/MyFile`. You should not rasterize shape files at this stage. 
+
+If the data is in the shape format, you should export it using `sf::st_write()` with one or more columns named `v_YYYY` (YYYY being the relevant year), and one column named `reference`. 
+
+If you have a raster (... dont know yet. Named bands perhaps.)
+
 ```{r, eval=F}
 #sf::st_write(..., "../../data/variables/....shp")
+sf::st_write(M3, "../../data/variables/natureIndexForestViken.shp")
 ```
 
