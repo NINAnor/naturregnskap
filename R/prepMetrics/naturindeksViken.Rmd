@@ -15,6 +15,7 @@ knit: (function(input_file, encoding) {
 
 ```{r setup, include=FALSE, message=FALSE}
 library(knitr)
+library(tmap)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -88,6 +89,11 @@ A <- NIcalc::assembleNiObject(
 
 saveRDS(A, "/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_assembled.rds")
 ```
+
+```{r}
+A <- readRDS("/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_assembled.rds")
+```
+
 Looking for missing values
 ```{r, eval=F}
 D <- NIcalc::imputeDiagnostics(x = A,
@@ -125,7 +131,7 @@ I2 <- NIcalc::impStand(x = A,
 
 
 
-Calculate index values
+Calculate index values (ignorin imputed values for now)
 
 ```{r, eval=F}
 NI <- NIcalc::calculateIndex(
@@ -146,14 +152,32 @@ saveRDS(NI, "/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tils
 ```
 
 ```{r}
-NI <- readRDS("P:/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_index.rds")
+NI <- readRDS("/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/naturindeksSkog_index.rds")
 ```
 
-Putting the index values and the standard deviations into a dataframe
+Get the BSunitIDs from the NI dataframe. These are 'kommunenummer'
 ```{r}
-BSunits <- row.names(NI$wholeArea$`1990`$BSunitIndices)
+BSunits <- NI$wholeArea$`1990`$BSunitData$id
+df <- data.frame(kommuneID = BSunits)
+```
 
-df <- data.frame(BSunits)
+
+Here are the version of the municipality map from Norway. M3 is from 2010.
+```{r}
+M <- sf::st_read("/data/R/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp")
+M2 <- sf::st_read("/data/R/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/versjon_2018/Kommuner_2018.shp")
+M3 <- sf::st_read("/data/Egenutvikling/41001581_egenutvikling_anders_kolstad/data/tilstandsindikatorer/kommuner2010/Norway_ABAS_utm33n.shp")
+```
+
+```{r}
+df$kommuneID %in% M$kommunenum
+df$kommuneID %in% M2$KOMMUNENUM
+df$kommuneID[17]
+df$kommuneID %in% M3$KommNR # YES
+```
+
+Putting the index values and the standard deviations into the correct shape file
+```{r}
 
 df$v_1990 <- rowMeans(NI$wholeArea$`1990`$BSunitIndices)
 df$v_2000 <- rowMeans(NI$wholeArea$`2000`$BSunitIndices)
@@ -166,24 +190,31 @@ df$sd_2000 <- matrixStats::rowSds(NI$wholeArea$`2000`$BSunitIndices)
 df$sd_2010 <- matrixStats::rowSds(NI$wholeArea$`2010`$BSunitIndices)
 df$sd_2014 <- matrixStats::rowSds(NI$wholeArea$`2014`$BSunitIndices)
 df$sd_2019 <- matrixStats::rowSds(NI$wholeArea$`2019`$BSunitIndices)
+
+M3$v_1990 <- df$v_1990[match(M3$KommNR, df$kommuneID)]
+M3$v_2000 <- df$v_2000[match(M3$KommNR, df$kommuneID)]
+M3$v_2010 <- df$v_2010[match(M3$KommNR, df$kommuneID)]
+M3$v_2014 <- df$v_2014[match(M3$KommNR, df$kommuneID)]
+M3$v_2019 <- df$v_2019[match(M3$KommNR, df$kommuneID)]
+
+M3$sd_1990 <- df$sd_1990[match(M3$KommNR, df$kommuneID)]
+M3$sd_2000 <- df$sd_2000[match(M3$KommNR, df$kommuneID)]
+M3$sd_2010 <- df$sd_2010[match(M3$KommNR, df$kommuneID)]
+M3$sd_2014 <- df$sd_2014[match(M3$KommNR, df$kommuneID)]
+M3$sd_2019 <- df$sd_2019[match(M3$KommNR, df$kommuneID)]
+
+
+
 ```
 
-Geo-Referencing the data frame 
+
+
 ```{r}
-M <- sf::st_read("R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/Kommune_polygon_2022_navn.shp")
-
-M2 <- sf::st_read("R:/GeoSpatialData/AdministrativeUnits/Norway_AdministrativeUnits/Converted/Norway_Municipalities/versjon_2018/Kommuner_2018.shp")
+tm_shape(M3)+
+  tm_polygons(col = 'v_1990',
+              alpha=0.5)
 ```
 
-```{r}
-df$BSunits %in% M$navn
-df$BSunits %in% M2$KOMMUNENAV
-df$BSunits[17]
-```
-
-```{r, eval=F}
-#length(NI$E$`1990`$BSunitIndices)
-```
 
 ```{r, eval=F}
 NIunits <- names(NI)
