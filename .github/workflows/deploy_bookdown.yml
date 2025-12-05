@@ -13,6 +13,8 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - uses: r-lib/actions/setup-r@v2
       - uses: r-lib/actions/setup-pandoc@v2
       - name: Install packages
@@ -40,6 +42,8 @@ jobs:
    steps:
      - name: Checkout
        uses: actions/checkout@main
+       with:
+         persist-credentials: false
      - name: Download artifact
        uses: actions/download-artifact@v1
        with:
